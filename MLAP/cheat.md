@@ -502,3 +502,11 @@ $$
 $$
 \lambda^* = \mathbf{errorCV}(f = \langle f^{-1}, \dots, f^{-k} \rangle, \lambda)
 $$
+
+## Lecture 11 - Bayesian Networks
+
+### Jeffrey's Rule
+
+$$
+p_2(x,y|\tilde{y}) = \frac{p_1(x,y)}{\sum_x p_1(x,y)}p(y|\tilde{y})
+$$

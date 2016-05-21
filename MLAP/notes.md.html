@@ -806,5 +806,281 @@ pre.editor-colors .fold-marker:after,
 <ul>
 <li>Represent probability distributions.</li>
 <li>Parameters and/or structure of these p.d.s can be learnt from data using either Bayesian or non-Bayesian methods.</li>
-</ul></body>
+</ul>
+<h3>Uncertain Evidence</h3>
+<p>Soft/uncertain evidence is if the variable is not fixed to a particular state (value), with the strength of belief about each state being given by probabilities.</p>
+<h4>Hard evidence</h4>
+<p>Certain a variable is in a particular state. In such a case, all the probability mass is in one of the vector components (i.e., <span class="math"><script type="math/tex">p(\text{outcome} = a) = 1</script></span> and every other <span class="math"><script type="math/tex">p(\text{outcome} = \{b \vee c \vee d \vee \dots \}) = 0</script></span>)</p>
+<h4>Inference</h4>
+<p>Inference with soft evidence can be achieved via Bayes’ rule. w/ soft evidence as <span class="math"><script type="math/tex">\tilde{y}</script></span>:</p>
+<span class="math"><script type="math/tex; mode=display">p(x|\tilde{y}) = \sum_y p(x|y) p(y|\tilde{y})
+</script></span>
+<blockquote>
+<p>Where <span class="math"><script type="math/tex">p(y=i|\tilde{y})</script></span> represents the probability <span class="math"><script type="math/tex">y</script></span> is in state <span class="math"><script type="math/tex">i</script></span> under the soft evidence. <span class="math"><script type="math/tex">\tilde{y}</script></span> is a <em>dummy</em> variable representing what is definitely known (i.e., uncertain evidence)</p>
+</blockquote>
+<h3>Jeffrey’s rule</h3>
+<p>To form a join distribution given soft evidence <span class="math"><script type="math/tex">\tilde{y}</script></span> and variables <span class="math"><script type="math/tex">x</script></span>, <span class="math"><script type="math/tex">y</script></span>, and <span class="math"><script type="math/tex">p_1(x,y)</script></span>:</p>
+<ol>
+<li>Form the conditional:</li>
+</ol>
+<span class="math"><script type="math/tex; mode=display">p_1(x|y) = \frac{p_1(x,y)}{\sum_x p_1(x,y)}
+</script></span>
+<ol start="2">
+<li>Define the joint</li>
+</ol>
+<span class="math"><script type="math/tex; mode=display">p_2(x,y|\tilde{y}) = p_1(x|y)p(y|\tilde{y})
+</script></span>
+<p>Soft evidence can be viewed as defining a new joint distribution.</p>
+<!-- $$
+p_2(x,y|\tilde{y}) = \frac{p_1(x,y)}{\sum_x p_1(x,y)}p(y|\tilde{y})
+$$ -->
+<h3>Examples of Bayesian Networks in ML</h3>
+<p>Prediction:</p>
+<span class="math"><script type="math/tex; mode=display">p(\text{class}|\text{input})
+</script></span>
+<p>Time series:</p>
+<ul>
+<li>Markov chains, hidden Markov models</li>
+</ul>
+<p>Unsupervised learning:</p>
+<span class="math"><script type="math/tex; mode=display">p(\text{data}) = \sum_\text{latent}p(\text{data}|\text{latent})p(\text{latent})
+</script></span>
+<h3>Independence <span class="math"><script type="math/tex">\perp\!\!\!\perp</script></span> in Bayesian Networks</h3>
+<p>Conditional independence of <span class="math"><script type="math/tex">A</script></span> &amp; <span class="math"><script type="math/tex">B</script></span> given <span class="math"><script type="math/tex">C</script></span>, <span class="math"><script type="math/tex">A\perp\!\!\!\perp B\; |\; C</script></span> :</p>
+<span class="math"><script type="math/tex; mode=display">p(A,B|C) = p(A|C)p(B|C)
+</script></span>
+<p>Conditional dependence <span class="math"><script type="math/tex">A \not\!\perp\!\!\!\perp B \; | \; C</script></span> :</p>
+<span class="math"><script type="math/tex; mode=display">p(A,B|C) \propto p(A,B,C) = p(C|A,B)p(A)p(B)
+</script></span>
+<p>Marginal independence <span class="math"><script type="math/tex">A\perp\!\!\!\perp B</script></span>:</p>
+<span class="math"><script type="math/tex; mode=display">p(A,B) = \sum_c p(A,B,C) = \sum_C p(A)p(B)p(C|A,B) = p(A)p(B)
+</script></span>
+<h4>Colliders</h4>
+<p>If <span class="math"><script type="math/tex">C</script></span> has more than one incoming link, then <span class="math"><script type="math/tex">A \perp\!\!\!\perp B</script></span> and <span class="math"><script type="math/tex">A \not\!\perp\!\!\!\perp B \; | \; C</script></span>. Hence <span class="math"><script type="math/tex">C</script></span> is a <strong>collider</strong>.</p>
+<p>If <span class="math"><script type="math/tex">C</script></span> has at most one incoming link, then <span class="math"><script type="math/tex">A \perp\!\!\!\perp B \; | \; C</script></span>  and <span class="math"><script type="math/tex">A \not\!\perp\!\!\!\perp B</script></span>. Hence <span class="math"><script type="math/tex">C</script></span> is a <strong>non-collider</strong>.</p>
+<p>### General Rule for independence In Bayesian Networks</p>
+<p>Given three sets of nodes <span class="math"><script type="math/tex">\mathcal{X}</script></span>, <span class="math"><script type="math/tex">\mathcal{Y}</script></span>, <span class="math"><script type="math/tex">\mathcal{C}</script></span>, if all paths from any element of <span class="math"><script type="math/tex">\mathcal{X}</script></span> to any element of <span class="math"><script type="math/tex">\mathcal{Y}</script></span> are blocked by <span class="math"><script type="math/tex">\mathcal{C}</script></span>, then <span class="math"><script type="math/tex">\mathcal{X}</script></span> and <span class="math"><script type="math/tex">\mathcal{Y}</script></span> are conditionally independent given <span class="math"><script type="math/tex">\mathcal{C}</script></span>.</p>
+<p>A path <span class="math"><script type="math/tex">\mathcal{P}</script></span> is blocked by <span class="math"><script type="math/tex">\mathcal{C}</script></span> if at least one of the following conditions is satisfied:</p>
+<ol>
+<li>there is a collider in the path <span class="math"><script type="math/tex">\mathcal{P}</script></span> such that neither the collider nor any of its descendants is in the conditioning set <span class="math"><script type="math/tex">\mathcal{C}</script></span>.</li>
+<li>there is a non-collider in the path <span class="math"><script type="math/tex">\mathcal{P}</script></span> that is in the conditioning set <span class="math"><script type="math/tex">\mathcal{C}</script></span>.</li>
+</ol>
+<h4>d-connected/separated</h4>
+<p>‘d-connected’ if there is a path from <span class="math"><script type="math/tex">\mathcal{X}</script></span> to <span class="math"><script type="math/tex">\mathcal{Y}</script></span> in the ‘connection’ graph, otherwise the variable sets are ‘d-separated’.</p>
+<p>d-separation implies <span class="math"><script type="math/tex">\mathcal{X} \perp\!\!\!\perp \mathcal{Y} \; | \; \mathcal{Z}</script></span>, but d-connection does not necessarily imply conditional dependence.</p>
+<h3>Markov equivalence</h3>
+<p>Skeleton:</p>
+<ul>
+<li>Formed from a graph by removing arrows</li>
+</ul>
+<p>Immorality:</p>
+<ul>
+<li>An immorality in a DAG is a configuration of three nodes <span class="math"><script type="math/tex">A,B,C</script></span> such that <span class="math"><script type="math/tex">C</script></span> is a child of both <span class="math"><script type="math/tex">A</script></span> and <span class="math"><script type="math/tex">B</script></span>, with <span class="math"><script type="math/tex">A</script></span> and <span class="math"><script type="math/tex">B</script></span> not directly connected.</li>
+</ul>
+<p>Markov equivalence:</p>
+<ul>
+<li>Two graphs represent the same set of independence assumptions iff they have same skeleton &amp; set of immoralities.</li>
+</ul>
+<h3>Limitations of Expressibility</h3>
+<span class="math"><script type="math/tex; mode=display">p(t_1, t_2, y_1, y_2, h) = p(t_1)p(t_2) p(y_i|t_1,h)p(y_2|t_2,h) \\
+t_1 \perp\!\!\!\perp t_2,y_2 \quad\quad\quad t_2 \perp\!\!\!\perp t_1,y_1
+</script></span>
+<p>Still holds:</p>
+<span class="math"><script type="math/tex; mode=display">p(t_1, t_2, y_1, y_2) = p(t_1)p(t_2) \sum_h p(y_i|t_1,h)p(y_2|t_2,h) \\
+t_1 \perp\!\!\!\perp t_2,y_2 \quad\quad\quad t_2 \perp\!\!\!\perp t_1,y_1
+</script></span>
+<h2>Lecture 12 - Probability Estimation in BNs and naive Bayes</h2>
+<span class="math"><script type="math/tex; mode=display">p(v^1, \dots, v^N, \theta) = p(\theta) \prod_{n=1}^N p(v^N|\theta)
+</script></span>
+<p>(In above <span class="math"><script type="math/tex">v^i</script></span> are all descendants of <span class="math"><script type="math/tex">\theta</script></span>)</p>
+<h2>Lecture 13 - Undirected Graphical Models</h2>
+<h3>Graphical Models</h3>
+<ul>
+<li><strong>Belief Network</strong> - Each factor is a conditional distribution.</li>
+<li><strong>Markov Network</strong> - Each factor corresponds to a potential (non-negative function).
+<ul>
+<li>Relates to strength of relationship between variables, but not directly related to dependence.</li>
+<li>Useful for collective phenomena (e.g. image processing)</li>
+<li>Corresponds to undirected graph.</li>
+</ul>
+</li>
+<li><strong>Chain Graph</strong> - Marriage of Belief and Markov Networks.
+<ul>
+<li>Contains both directed and undirected links</li>
+</ul>
+</li>
+<li><strong>Factor Graph</strong> - Barebones representation of the factorisation of a distribution.
+<ul>
+<li>Often used for efficient computation and deriving message passing algorithms.</li>
+<li>Factor graphs one way of representing hypergraphs.</li>
+<li>Hypergraph just a set of veritices.</li>
+</ul>
+</li>
+</ul>
+<h3>Markov Network</h3>
+<ul>
+<li><strong>Clique</strong>: Fully connected subset of nodes.</li>
+<li><strong>Maximal clique</strong>: Clique that is not a subset of a larger clique.</li>
+</ul>
+<p>Markov networks are undirected graphs in which there exist a potential (non-negative function) <span class="math"><script type="math/tex">\psi</script></span> defined on each maximal clique.</p>
+<p>Joint distribution is proportional to product of all clique potentials. E.g.:</p>
+<span class="math"><script type="math/tex; mode=display">p(A,B,C,D,E) = \frac{1}{Z}\psi(A,C)\psi(C,D)\psi(B,C,E) \\ \; \\
+Z = \sum_{A,B,C,D,E} \psi(A,C)\psi(C,D)\psi(B,C,E)
+</script></span>
+<h3>General Rule for Independence in Markov Networks</h3>
+<p>For a conditioning set <span class="math"><script type="math/tex">\mathcal{Z}</script></span> and two sets <span class="math"><script type="math/tex">\mathcal{X}</script></span> and <span class="math"><script type="math/tex">\mathcal{Y}</script></span>:</p>
+<ul>
+<li>Remove all links neighbouring the variables in the conditioning set <span class="math"><script type="math/tex">\mathcal{Z}</script></span>.</li>
+<li>If there is no path from any member of <span class="math"><script type="math/tex">\mathcal{X}</script></span> to any member of <span class="math"><script type="math/tex">\mathcal{Y}</script></span>, then <span class="math"><script type="math/tex">\mathcal{X}</script></span> and <span class="math"><script type="math/tex">\mathcal{Y}</script></span> are conditionally independent given <span class="math"><script type="math/tex">\mathcal{Z}</script></span>.</li>
+</ul>
+<h3>Alternative Rule for Independence in Belief Networks</h3>
+<p><span class="math"><script type="math/tex">\mathcal{X} \perp\!\!\!\perp \mathcal{Y} \; | \; \mathcal{Z}</script></span>?</p>
+<ul>
+<li><strong>Ancestral graph</strong>: Remove any node that is neither in <span class="math"><script type="math/tex">\mathcal{X} \cup \mathcal{Y} \cup \mathcal{Z}</script></span> nor an ancestor of an node in this set, together with any edges in or out of such nodes.</li>
+<li><strong>Moralisation</strong>: Add a line in between any two nodes with a common child. Remove directions</li>
+<li><strong>Separation</strong>: Remove all links from <span class="math"><script type="math/tex">\mathcal{Z}</script></span>.</li>
+<li><strong>Independence</strong>: If there are no paths from any node in <span class="math"><script type="math/tex">\mathcal{X}</script></span> to one in <span class="math"><script type="math/tex">\mathcal{Y}</script></span>, then <span class="math"><script type="math/tex">\mathcal{X} \perp\!\!\!\perp \mathcal{Y} \; | \; \mathcal{Z}</script></span></li>
+</ul>
+<h3>The Boltzmann Machine</h3>
+<p>A Markov network (MN) on binary variables <span class="math"><script type="math/tex">\text{dom}(x_i) = \{0,1\}</script></span> of the form:</p>
+<span class="math"><script type="math/tex; mode=display">p(\mathbf{x}|\mathbf{w},b) = \frac{1}{Z(\mathbf{x},b)}e^{\sum_{i<j}w_{ij}x_i x_j + \sum_i b_i x_i}
+</script></span>
+<p>Where interactions <span class="math"><script type="math/tex">w_{ij}</script></span> are the <em>weights</em> and <span class="math"><script type="math/tex">b_i</script></span> the biases.</p>
+<ul>
+<li>Model has been studied as basic model of distributed memory &amp; computation. <span class="math"><script type="math/tex">x_i = 1</script></span> represents a neuron <em>firing</em> and <span class="math"><script type="math/tex">x_i = 0</script></span> not firing. Matrix <span class="math"><script type="math/tex">\mathbf{w}</script></span> describes which neurons are connected to each other. The conditional:</li>
+</ul>
+<span class="math"><script type="math/tex; mode=display">p(x_i = 1 | x_{\backslash i}) = \sigma \left(b_i + \sum_{i \neq j} w_{ij} x_j\right), \quad \sigma(x) = \frac{e^x}{1+e^x}
+</script></span>
+<!-- $$
+p(x_i = 1 | x_{i}) = \sigma \left(b_i + \sum_{i \neq j} w_{ij} x_j\right), \quad \sigma(x) = \frac{e^x}{1+e^x}
+$$ -->
+<ul>
+<li>Graphical model of BM is an undirected graph with a link between nodes <span class="math"><script type="math/tex">i</script></span> and <span class="math"><script type="math/tex">j</script></span> for <span class="math"><script type="math/tex">w_{ij} \neq 0</script></span>. For all but specially constrained <span class="math"><script type="math/tex">\mathbf{w}</script></span> inference will be typically intractable.</li>
+<li>Given a set of data <span class="math"><script type="math/tex">\mathbf{x}^1, \dots, \mathbf{x}^n</script></span>, parameters <span class="math"><script type="math/tex">\mathbf{w}, b</script></span> can be set by maximum likelihood.</li>
+</ul>
+<blockquote>
+<p>Ommitted: Boltzmann machines are ‘Pairwise Markov networks’, The Ising model</p>
+</blockquote>
+<h3>Expressiveness of Belief and Markov networks</h3>
+<blockquote>
+<p>On paper</p>
+</blockquote>
+<h2>Lecture 14 - Hidden Markov Models</h2>
+<h3>Time series</h3>
+<p>A time series is an ordered sequence:</p>
+<span class="math"><script type="math/tex; mode=display">x_{a:b} = \{x_a, x_{a+1}, \dots , x_b \}
+</script></span>
+<p>Allows consideration of the <em>past</em> and <em>future</em> in the sequence. <em>x</em> can be either discrete or continuous.</p>
+<h3>Markov Models</h3>
+<p>For timeseries data <span class="math"><script type="math/tex">v_1, \dots, v_T</script></span> we need a model <span class="math"><script type="math/tex">p(v_{1:T})</script></span>. <span class="math"><script type="math/tex">v_t</script></span> are random variables with same domain (system <em>state)</em>. For casual consistency:</p>
+<span class="math"><script type="math/tex; mode=display">p(v_{1:T}) = \prod_{t=1}^{T} p(v_t|v_{1:t-1})
+</script></span>
+<p>With the convention <span class="math"><script type="math/tex">p(v_t | v_{1:t-1}) = p(v_1)</script></span> for <span class="math"><script type="math/tex">t=1</script></span>.</p>
+<p><strong>Independence assumptions</strong>:</p>
+<ul>
+<li>Often natural to assume influence of immediate past more relevant than remote past and, in Markov models, only a limited number of previous observaions are required to predict the future.</li>
+</ul>
+<h3>Markov chains</h3>
+<p>Only the recent past is relevant:</p>
+<span class="math"><script type="math/tex; mode=display">p(v_t | v_1, \dots, v_{t-1}) = p(v_t | v_{t - L}, \dots, v_{t-1})
+</script></span>
+<p>where <span class="math"><script type="math/tex">L \geq 1</script></span> is the order of the Markov chain</p>
+<span class="math"><script type="math/tex; mode=display">p(v_{1:T}) = p(v_1)p(v_2|v_1)p(v_3|v_2)\dots p(v_T|v_{T-1})
+</script></span>
+<p>For a stationary Markov chain the transitions <span class="math"><script type="math/tex">p(v_t = s'|v_{t-1} = s) = f(s',s)</script></span> are time-independent (‘homogeneous’). Otherwise chain is non-stationary (‘inhomogeneous’)</p>
+<h3>Hidden Markov Models</h3>
+<p>The HMM defines a Markov chain or hidden (‘latent’) variables <span class="math"><script type="math/tex">h_{1:T}</script></span>. The observed (‘visible’) variables are dependent on the hidden variables through an emission <span class="math"><script type="math/tex">p(v_t|h_t)</script></span>. This defines a joint distribution:</p>
+<span class="math"><script type="math/tex; mode=display">p(h_{1:T}, v_{1:T}) = p(v_1|h_1)p(h_1) \prod_{t=2}^T p(v_t|h_t) p(h_t| h_{t-1})
+</script></span>
+<p>For stationary HMM, the transition <span class="math"><script type="math/tex">p(h_t| h_{t-1})</script></span> and emission <span class="math"><script type="math/tex">p(v_t|h_t)</script></span> are constant through time.</p>
+<h3>HMM Parameters</h3>
+<h4>Transition Distribution</h4>
+<p>For a stationary HMM the transition distribution <span class="math"><script type="math/tex">p(h_{t+1}|h_t)</script></span> is defined by the <span class="math"><script type="math/tex">H \times H</script></span> transition matrix</p>
+<span class="math"><script type="math/tex; mode=display">A_{i',i} = p(h_{t+1} = i'|h_t = i)
+</script></span>
+<p>and an initial distribution</p>
+<span class="math"><script type="math/tex; mode=display">a_i = p(h_1 = i)
+</script></span>
+<h4>Emission Distribution</h4>
+<p>For a stationary HMM and an emission distribution <span class="math"><script type="math/tex">p(v_t|h_t)</script></span> with discrete states <span class="math"><script type="math/tex">v_t \in \{1, \dots, V\}</script></span>, we define a <span class="math"><script type="math/tex">V \times H</script></span> emission matrix</p>
+<span class="math"><script type="math/tex; mode=display">B_{i,j} = p(v_t = i|h_t = j)
+</script></span>
+<p>For continuous outputs, <span class="math"><script type="math/tex">h_t</script></span> selects one of <span class="math"><script type="math/tex">H</script></span> possible output distributions <span class="math"><script type="math/tex">p(v_t|h_t), \; h_t \in \{1, \dots, H\}</script></span></p>
+<h3>Classical Inference Problems</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Filtering</strong></td>
+<td>Inferring the present</td>
+<td><span class="math"><script type="math/tex">p(h_t|v_{1:t})</script></span></td>
+</tr>
+<tr>
+<td><strong>Prediction</strong></td>
+<td>Inferring the future</td>
+<td><span class="math"><script type="math/tex">p(h_t|v_{1:s}) \quad t > s</script></span></td>
+</tr>
+<tr>
+<td><strong>Smoothing</strong></td>
+<td>Inferring the past</td>
+<td><span class="math"><script type="math/tex">p(h_t|v_{1:u}) \quad t < u</script></span></td>
+</tr>
+<tr>
+<td><strong>Likelihood</strong></td>
+<td></td>
+<td><span class="math"><script type="math/tex">p(v_{1:t})</script></span></td>
+</tr>
+<tr>
+<td><strong>Most likely hidden path</strong></td>
+<td>Viterbi alignment</td>
+<td><span class="math"><script type="math/tex">\underset{h_{1:T}}{\arg\max} p(h_{1:T}|v_{1:T})</script></span></td>
+</tr>
+</tbody>
+</table>
+<p>For prediction, one is also often interested in <span class="math"><script type="math/tex">p(v_t|v_{1:s})</script></span> for <span class="math"><script type="math/tex">t > s</script></span>.</p>
+<h3>Filtering <span class="math"><script type="math/tex">p(h_t|v_{1:t})</script></span></h3>
+<p>If <span class="math"><script type="math/tex">a(b_t) \equiv p(h_t, v_{1:t})</script></span>:</p>
+<span class="math"><script type="math/tex; mode=display">\alpha(h_t) = \underbrace{p(v_t|h_t)}_{\text{corrector}} \underbrace{\sum_{h_{t-1}} p(h_t|h_{t-1}) \alpha (h_{t-1})}_{\text{predictor}}, \quad t > 1
+</script></span>
+<p>with</p>
+<span class="math"><script type="math/tex; mode=display">\alpha(h_1) = p(h_1, v_1) = p(v_1 | h_1)p(h_1)
+</script></span>
+<p>Normalisation gives filtered posterior:</p>
+<span class="math"><script type="math/tex; mode=display">p(h_t|v_{1:t}) \propto \alpha(h_t)
+</script></span>
+<h4>Likelihood <span class="math"><script type="math/tex">p(v_{1:T})</script></span></h4>
+<span class="math"><script type="math/tex; mode=display">p(v_{1:T}) = \sum_{h_t} p(h_T, v_{1:T}) = \sum_{h_T} \alpha(h_T)
+</script></span>
+<h3>Parallel Smoothing</h3>
+<p>Can compute smoothed quantitiy by considering how <span class="math"><script type="math/tex">h_t</script></span> partitions the series into the past and future:</p>
+<span class="math"><script type="math/tex; mode=display">\begin{align}
+    p(h_t, v_{1:T}) &= p(h_t, v_{1:t}, v_{t+1:T}) \\
+    &= \underbrace{p(h_t, v_{1:t})}_{\text{past}} \underbrace{p(v_{t+1:T}|h_t, v_{1:t})}_{\text{future}} = \alpha(h_t) \beta(h_t)
+\end{align}
+</script></span>
+<p><strong>Forward</strong>: The term <span class="math"><script type="math/tex">\alpha(h_t)</script></span> is obtained from the ‘forward’ <span class="math"><script type="math/tex">\alpha</script></span> recursion.</p>
+<p><strong>Backward</strong>: Term <span class="math"><script type="math/tex">\beta(h_t)</script></span> may be obtained using a ‘backward’ <span class="math"><script type="math/tex">\beta</script></span> recursion.</p>
+<p>Forward and backward recursions are independent and may therefore run in parallel, with results combined to obtain smoothed posterior.</p>
+<blockquote>
+<p>Omitted: <span class="math"><script type="math/tex">\beta</script></span> recursion</p>
+</blockquote>
+<h3>Computing the Pairwise Marginal <span class="math"><script type="math/tex">p(h_t, h_{t+1}|v_{1:T})</script></span></h3>
+<span class="math"><script type="math/tex; mode=display">p(h_t, h_{t+1}|v_{1:T}) \propto \alpha(h_t)p(v_{t+1}|h_{t+1})p(h_{t+1}|h_t)\beta(h_{t+1})
+</script></span>
+<h3>Most likely joint state</h3>
+<p>Most likely path <span class="math"><script type="math/tex">h_{1:T}</script></span> of <span class="math"><script type="math/tex">p(h_{1:T}|v_{1:T})</script></span> is the same as the most likely state of:</p>
+<span class="math"><script type="math/tex; mode=display">p(h_{1:T}|v_{1:T}) = \prod_t p(v_t | h_t) p(h_t| h_{t-1})
+</script></span>
+<p>Consider</p>
+<span class="math"><script type="math/tex; mode=display">\max_{h_T} \prod_{t=1}^T p(v_t|h_t)p(h_t | h_{t-1}) \\
+= \left\{\prod_{t=1}^{T-1} p(v_t|h_t)p(h_t|h_{t-1})\right\}\underbrace{\max_{h_T}p(v_T|h_T)p(h_T|h_{T-1})}_{\mu(h_{T-1})}
+</script></span>
+<p><span class="math"><script type="math/tex">\mu(h_{T-1})</script></span> conveys information from the end of the chain to the penultimate timestep.</p>
+<p>Most</p></body>
 </html>
