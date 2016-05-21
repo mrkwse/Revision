@@ -36,7 +36,7 @@ _'L1 Regularization'_
 * Generally an equilateral polytope
 
 $$
-L(\theta) = \lambda \left(\sum_i \mathbf{loss}(y_i, f(x_i))\right) + (1 - \lambda)\sum_j |\theta_j |^p
+L(\theta) = \lambda \left(\sum_i \mathit{loss}(y_i, f(x_i))\right) + (1 - \lambda)\sum_j |\theta_j |^p
 $$
 
 $$
@@ -44,11 +44,11 @@ $$
 $$
 
 $$
-\frac{d}{d\theta}|\theta| = \frac{d}{d\theta}\left(\theta^2\right)^\frac{1}{2} =\frac{1}{2}\left(\theta^2\right)^{-\frac{1}{2}}.2\theta = \frac{\theta}{|\theta|} = \mathbf{sign}(\theta)
+\frac{d}{d\theta}|\theta| = \frac{d}{d\theta}\left(\theta^2\right)^\frac{1}{2} =\frac{1}{2}\left(\theta^2\right)^{-\frac{1}{2}}.2\theta = \frac{\theta}{|\theta|} = \mathit{sign}(\theta)
 $$
 
 $$
-\mathbf{sign}(\theta) =
+\mathit{sign}(\theta) =
     \begin{cases}
         -1 \quad &\text{if} &\; \theta < 0 \\
         1 \quad &\text{if} &\; \theta > 0 \\
@@ -63,17 +63,17 @@ L(\theta) = \lambda \left(\sum_i (y_i - \theta, X_i)^2\right) + (1 - \lambda)\su
 $$
 
 $$
-\frac{\delta}{\delta \theta_i}\sum_j |\theta_j| = \mathbf{sign}(\theta_i)
+\frac{\delta}{\delta \theta_i}\sum_j |\theta_j| = \mathit{sign}(\theta_i)
 $$
 
 $$
-\Delta L(\theta) = -2 \lambda\left[\sum_i X_i . (y_i - \theta.X_i)\right] + (1 - \lambda)\mathbf{sign}(\theta)
+\Delta L(\theta) = -2 \lambda\left[\sum_i X_i . (y_i - \theta.X_i)\right] + (1 - \lambda)\mathit{sign}(\theta)
 $$
 
 Matrix:
 
 $$
-\Delta L(\theta) = -2 \lambda X^T (Y - X\theta) + (1 - \lambda)\mathbf{sign}(\theta)
+\Delta L(\theta) = -2 \lambda X^T (Y - X\theta) + (1 - \lambda)\mathit{sign}(\theta)
 $$
 
 Solving
@@ -158,7 +158,7 @@ $$
 
 $$
 \begin{align}
-    \theta_{\mathbf{MLE}} &= \underset{\theta}{\arg\max} p(\theta|Y,X,\sigma^2) \\
+    \theta_{\mathit{MLE}} &= \underset{\theta}{\arg\max} p(\theta|Y,X,\sigma^2) \\
     &\propto \underset{\theta}{\arg\max} p(Y|X,\theta, \sigma^2) \\
     &\propto \underset{\theta}{\arg\max} \prod_i \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(y_i-X_i\theta)^2}{2\sigma^2}} \\
     &\propto \underset{\theta}{\arg\max} \sum_i - \log\left(\sqrt{2\pi\sigma^2}\right) -\frac{(y_i-X_i\theta)^2}{2\sigma^2} \\
@@ -170,7 +170,7 @@ $$
 
 $$
 \begin{align}
-    \theta_{\mathbf{MAP}} &= \underset{\theta}{\arg\max} p(\theta|Y,X,\sigma^2) \\
+    \theta_{\mathit{MAP}} &= \underset{\theta}{\arg\max} p(\theta|Y,X,\sigma^2) \\
     &\propto \underset{\theta}{\arg\max} p(Y|X,\theta, \sigma^2)p(\theta) \\
     &\propto \underset{\theta}{\arg\max} \left[\prod_i p(Y|X,\theta, \sigma^2)\right]e^{-\frac{(1-\lambda)}{\lambda}\sum_i|\theta_i|^P} \\
     &\propto \underset{\theta}{\arg\max} \log \left(\prod_i p(Y|X,\theta, \sigma^2)\right)-\frac{(1-\lambda)}{\lambda}\sum_i|\theta_i|^P \\
@@ -186,13 +186,13 @@ $$
 ### Mean error
 
 $$
-\frac{1}{N} \sum_i \mathbf{error}(y_i, f(x_i))
+\frac{1}{N} \sum_i \mathit{error}(y_i, f(x_i))
 $$
 
 ### Mean Squared Error (MSE)
 
 $$
-\frac{1}{N} \sum_{\langle X,y \rangle \in \text{TestData}} \mathbf{error}(y - f(X))^2
+\frac{1}{N} \sum_{\langle X,y \rangle \in \text{TestData}} \mathit{error}(y - f(X))^2
 $$
 
 Square root of MSE, Root Mean Squared Error (RMSE) is common.
@@ -202,13 +202,13 @@ Square root of MSE, Root Mean Squared Error (RMSE) is common.
 Hard classifier formulates error measure for a given test instance $\langle X,y \rangle$ as:
 
 $$
-I(c^{\mathbf{hard}}(X,\theta) = y)
+I(c^{\mathit{hard}}(X,\theta) = y)
 $$
 
 Average hard classification accuracy in test set:
 
 $$
-\frac{1}{N} \sum_{\langle y,X \rangle \in \text{TestData}} I(c^{\mathbf{hard}}(X,\theta) = y)
+\frac{1}{N} \sum_{\langle y,X \rangle \in \text{TestData}} I(c^{\mathit{hard}}(X,\theta) = y)
 $$
 
 ### Soft Classification Accuracy
@@ -230,7 +230,7 @@ $$
 Average __hard__ classification error in test set:
 
 $$
-\frac{1}{N} \sum_{\langle y,X \rangle \in \text{TestData}} (1 - I(c^{\mathbf{hard}}(X,\theta) = y))
+\frac{1}{N} \sum_{\langle y,X \rangle \in \text{TestData}} (1 - I(c^{\mathit{hard}}(X,\theta) = y))
 $$
 
 > * Accuracy prefers high values
@@ -248,12 +248,12 @@ $$
 #### k-fold cross validation error
 
 $$
-\mathbf{errorCV}(f = \langle f^{-1}, \dots, f^{-k} \rangle, \lambda) = \frac{1}{N} \sum_i \mathbf{error}\left(y_i, f^{-f\,\mathbf{old}(i)}(X_i, \lambda)\right)
+\mathit{errorCV}(f = \langle f^{-1}, \dots, f^{-k} \rangle, \lambda) = \frac{1}{N} \sum_i \mathit{error}\left(y_i, f^{-f\,\mathit{old}(i)}(X_i, \lambda)\right)
 $$
 
 Optimal $\lambda$ given by:
 $$
-\lambda^* = \mathbf{errorCV}(f = \langle f^{-1}, \dots, f^{-k} \rangle, \lambda)
+\lambda^* = \mathit{errorCV}(f = \langle f^{-1}, \dots, f^{-k} \rangle, \lambda)
 $$
 
 ### CV to tune $\lambda$

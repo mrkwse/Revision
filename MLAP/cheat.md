@@ -88,15 +88,15 @@ _The weighted average of all possible values $X$ can take_
 ### Variance
 
 $$
-\mathbf{Var}(X) = E[(X-E[X])^2] = \sum_x (x-E[X])^2 p(X=x)
+\mathit{Var}(X) = E[(X-E[X])^2] = \sum_x (x-E[X])^2 p(X=x)
 $$
 
 ### Covariance
 
 $$
 \begin{align}
-\mathbf{Cov}(X,Y) &= E[(X-E[X])(Y-E[Y])] \\
-\mathbf{Cov}(X,Y) &= \sum_x \sum_y (x-E[X])(y-E[Y])\;p(X=x, Y=y)
+\mathit{Cov}(X,Y) &= E[(X-E[X])(Y-E[Y])] \\
+\mathit{Cov}(X,Y) &= \sum_x \sum_y (x-E[X])(y-E[Y])\;p(X=x, Y=y)
 \end{align}
 $$
 
@@ -141,7 +141,7 @@ $$
 Variance:
 
 $$
-\mathbf{Var}(X) = \int^\infty_{-\infty} (x-E[X])^2 p(x) dx
+\mathit{Var}(X) = \int^\infty_{-\infty} (x-E[X])^2 p(x) dx
 $$
 
 #### Bayes' for Continuous Random Vars
@@ -165,7 +165,7 @@ $$
 ### Beta Distribution
 
 $$
-p(\theta|\alpha, \beta) = \frac{\theta^{\alpha-1}(1-\theta)^{\beta-1}}{B(\alpha,\beta)} \sim \mathbf{Beta}(\alpha,\beta)
+p(\theta|\alpha, \beta) = \frac{\theta^{\alpha-1}(1-\theta)^{\beta-1}}{B(\alpha,\beta)} \sim \mathit{Beta}(\alpha,\beta)
 $$
 
 Via derivation:
@@ -208,13 +208,13 @@ $$
 #### MLE Inference
 
 $$
-\theta_{\mathbf{MLE}} = \arg \max_\theta p(c|\theta)
+\theta_{\mathit{MLE}} = \arg \max_\theta p(c|\theta)
 $$
 
 #### MAP Inference
 
 $$
- \theta_{\mathbf{MLE}} = \arg \max_\theta \frac{p(c|\theta)p(\theta)}{\int p(c|\theta)p(\theta)d\theta}
+ \theta_{\mathit{MLE}} = \arg \max_\theta \frac{p(c|\theta)p(\theta)}{\int p(c|\theta)p(\theta)d\theta}
 $$
 
 ### Multinomial Distribution
@@ -231,7 +231,7 @@ $$
 Generalizes Beta distribution to the $k-1$ probability simplex.
 
 $$
-p(\theta|\alpha) = \frac{\Gamma(\alpha)}{\Gamma(\alpha)\Gamma(\beta)}\prod_i\theta^{\alpha-1} \sim \mathbf{Dir}(\alpha_1, \dots, \alpha_k)
+p(\theta|\alpha) = \frac{\Gamma(\alpha)}{\Gamma(\alpha)\Gamma(\beta)}\prod_i\theta^{\alpha-1} \sim \mathit{Dir}(\alpha_1, \dots, \alpha_k)
 $$
 
 _With:_
@@ -273,19 +273,19 @@ $$
 #### Total loss
 
 $$
-\sum_i \mathbf{loss}(y_i, f(x_i))
+\sum_i \mathit{loss}(y_i, f(x_i))
 $$
 
 or
 
 $$
-L(\theta) = \sum_i \mathbf{loss}(y_i, \theta.X_i)
+L(\theta) = \sum_i \mathit{loss}(y_i, \theta.X_i)
 $$
 
 ### Least Squares Regression
 
 $$
-\theta^* = \underset{\theta}{\arg\min} \sum_i \mathbf{loss}(y_i, \theta.X_i)
+\theta^* = \underset{\theta}{\arg\min} \sum_i \mathit{loss}(y_i, \theta.X_i)
 $$
 
 Gradient vector:
@@ -348,7 +348,7 @@ _No equations. Many, many graphs._
 ### Step Function Classifier
 
 $$
-\mathbf{step}(x) =
+\mathit{step}(x) =
     \begin{cases}
         1 & \quad \text{if }\; x>0 \\
         0 & \quad \text{if }\; x\leq 0
@@ -358,7 +358,7 @@ $$
 ### Sigmoid
 
 $$
-\mathbf{sigmoid}(x) = \frac{1}{1+e^{-x}}
+\mathit{sigmoid}(x) = \frac{1}{1+e^{-x}}
 $$
 
 ### Logistic Regression Classifier
@@ -401,7 +401,7 @@ $$
 * $p=2$ : Ridge
 
 $$
-L(\theta) = \lambda \left(\sum_i \mathbf{loss}(y_i, f(x_i))\right) + (1 - \lambda)\sum_j |\theta_j |^p
+L(\theta) = \lambda \left(\sum_i \mathit{loss}(y_i, f(x_i))\right) + (1 - \lambda)\sum_j |\theta_j |^p
 $$
 
 Choosing $\lambda$:
@@ -431,7 +431,7 @@ $$
 
 $$
 \begin{align}
-\theta_{\mathbf{MLE}} &= \underset{\theta}{\arg\max} p(\theta|Y,X,\sigma^2) \\
+\theta_{\mathit{MLE}} &= \underset{\theta}{\arg\max} p(\theta|Y,X,\sigma^2) \\
 &\propto \underset{\theta}{\arg\min} \sum_i (y_i - X_i\theta)^2
 \end{align}
 $$
@@ -441,7 +441,7 @@ $$
 
 $$
 \begin{align}
-\theta_{\mathbf{MAP}} &= \underset{\theta}{\arg\max} p(\theta|Y,X,\sigma^2) \\
+\theta_{\mathit{MAP}} &= \underset{\theta}{\arg\max} p(\theta|Y,X,\sigma^2) \\
 &\propto \underset{\theta}{\arg\max} p(Y|X,\theta, \sigma^2)p(\theta) \\
     &\propto \underset{\theta}{\arg\min} \sum_i \lambda(y_i - X_i\theta)^2 + (1 - \lambda)\sum_i |\theta_i|^P
 \end{align}
@@ -453,13 +453,13 @@ $$
 ### Mean error
 
 $$
-\frac{1}{N} \sum_i \mathbf{error}(y_i, f(x_i))
+\frac{1}{N} \sum_i \mathit{error}(y_i, f(x_i))
 $$
 
 ### Mean Squared Error (MSE)
 
 $$
-\frac{1}{N} \sum_{\langle X,y \rangle \in \text{TestData}} \mathbf{error}(y - f(X))^2
+\frac{1}{N} \sum_{\langle X,y \rangle \in \text{TestData}} \mathit{error}(y - f(X))^2
 $$
 
 ### Hard Classification Accuracy
@@ -468,7 +468,7 @@ $$
 **Average** hard classification accuracy in test set:
 
 $$
-\frac{1}{N} \sum_{\langle y,X \rangle \in \text{TestData}} I(c^{\mathbf{hard}}(X,\theta) = y)
+\frac{1}{N} \sum_{\langle y,X \rangle \in \text{TestData}} I(c^{\mathit{hard}}(X,\theta) = y)
 $$
 
 ### Soft Classification Accuracy
@@ -490,17 +490,17 @@ $$
 Average __hard__ classification error in test set:
 
 $$
-\frac{1}{N} \sum_{\langle y,X \rangle \in \text{TestData}} (1 - I(c^{\mathbf{hard}}(X,\theta) = y))
+\frac{1}{N} \sum_{\langle y,X \rangle \in \text{TestData}} (1 - I(c^{\mathit{hard}}(X,\theta) = y))
 $$
 
 #### k-fold cross validation error
 
 $$
-\mathbf{errorCV}(f = \langle f^{-1}, \dots, f^{-k} \rangle, \lambda) = \frac{1}{N} \sum_i \mathbf{error}\left(y_i, f^{-f\,\mathbf{old}(i)}(X_i, \lambda)\right)
+\mathit{errorCV}(f = \langle f^{-1}, \dots, f^{-k} \rangle, \lambda) = \frac{1}{N} \sum_i \mathit{error}\left(y_i, f^{-f\,\mathit{old}(i)}(X_i, \lambda)\right)
 $$
 
 $$
-\lambda^* = \mathbf{errorCV}(f = \langle f^{-1}, \dots, f^{-k} \rangle, \lambda)
+\lambda^* = \mathit{errorCV}(f = \langle f^{-1}, \dots, f^{-k} \rangle, \lambda)
 $$
 
 ## Lecture 11 - Bayesian Networks
@@ -509,4 +509,17 @@ $$
 
 $$
 p_2(x,y|\tilde{y}) = \frac{p_1(x,y)}{\sum_x p_1(x,y)}p(y|\tilde{y})
+$$
+
+## Lecture 14 - Hidden Vars
+
+### Kullback-Leibler (KL) Divergence
+
+$$
+\begin{align}
+    \mathit{KL}(q(x)|p(x)) &= \left\langle
+        \log \frac{q(x)}{p(x)}
+    \right\rangle_{q(x)} \geq 0 \\
+    \mathit{KL}(q(x)|p(x)) &= 0 \text{ iff } p = q
+\end{align}
 $$

@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="utf-8" />
+      <title>notes-2</title>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    jax: ["input/TeX","output/HTML-CSS"],
+    extensions: [],
+    TeX: {
+      extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
+    },
+    showMathMenu: false
+  });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js">
+</script>
+      <style>.markdown-preview:not([data-use-github-style]) { padding: 2em; font-size: 1.2em; color: rgb(171, 178, 191); overflow: auto; background-color: rgb(40, 44, 52); }
+.markdown-preview:not([data-use-github-style]) > :first-child { margin-top: 0px; }
+.markdown-preview:not([data-use-github-style]) h1, .markdown-preview:not([data-use-github-style]) h2, .markdown-preview:not([data-use-github-style]) h3, .markdown-preview:not([data-use-github-style]) h4, .markdown-preview:not([data-use-github-style]) h5, .markdown-preview:not([data-use-github-style]) h6 { line-height: 1.2; margin-top: 1.5em; margin-bottom: 0.5em; color: rgb(255, 255, 255); }
+.markdown-preview:not([data-use-github-style]) h1 { font-size: 2.4em; font-weight: 300; }
+.markdown-preview:not([data-use-github-style]) h2 { font-size: 1.8em; font-weight: 400; }
+.markdown-preview:not([data-use-github-style]) h3 { font-size: 1.5em; font-weight: 500; }
+.markdown-preview:not([data-use-github-style]) h4 { font-size: 1.2em; font-weight: 600; }
+.markdown-preview:not([data-use-github-style]) h5 { font-size: 1.1em; font-weight: 600; }
+.markdown-preview:not([data-use-github-style]) h6 { font-size: 1em; font-weight: 600; }
+.markdown-preview:not([data-use-github-style]) strong { color: rgb(255, 255, 255); }
+.markdown-preview:not([data-use-github-style]) del { color: rgb(124, 135, 156); }
+.markdown-preview:not([data-use-github-style]) a, .markdown-preview:not([data-use-github-style]) a code { color: rgb(82, 139, 255); }
+.markdown-preview:not([data-use-github-style]) img { max-width: 100%; }
+.markdown-preview:not([data-use-github-style]) > p { margin-top: 0px; margin-bottom: 1.5em; }
+.markdown-preview:not([data-use-github-style]) > ul, .markdown-preview:not([data-use-github-style]) > ol { margin-bottom: 1.5em; }
+.markdown-preview:not([data-use-github-style]) blockquote { margin: 1.5em 0px; font-size: inherit; color: rgb(124, 135, 156); border-color: rgb(75, 83, 98); border-width: 4px; }
+.markdown-preview:not([data-use-github-style]) hr { margin: 3em 0px; border-top-width: 2px; border-top-style: dashed; border-top-color: rgb(75, 83, 98); background: none; }
+.markdown-preview:not([data-use-github-style]) table { margin: 1.5em 0px; }
+.markdown-preview:not([data-use-github-style]) th { color: rgb(255, 255, 255); }
+.markdown-preview:not([data-use-github-style]) th, .markdown-preview:not([data-use-github-style]) td { padding: 0.66em 1em; border: 1px solid rgb(75, 83, 98); }
+.markdown-preview:not([data-use-github-style]) pre, .markdown-preview:not([data-use-github-style]) code { color: rgb(255, 255, 255); background-color: rgb(58, 63, 75); }
+.markdown-preview:not([data-use-github-style]) pre, .markdown-preview:not([data-use-github-style]) pre.editor-colors { margin: 1.5em 0px; padding: 1em; font-size: 0.92em; border-radius: 3px; background-color: rgb(49, 54, 63); }
+.markdown-preview:not([data-use-github-style]) kbd { color: rgb(255, 255, 255); border-width: 1px 1px 2px; border-style: solid; border-color: rgb(75, 83, 98) rgb(75, 83, 98) rgb(62, 68, 81); background-color: rgb(58, 63, 75); }
+.markdown-preview[data-use-github-style] { font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif; line-height: 1.6; word-wrap: break-word; padding: 30px; font-size: 16px; color: rgb(51, 51, 51); overflow: scroll; background-color: rgb(255, 255, 255); }
+.markdown-preview[data-use-github-style] > :first-child { margin-top: 0px !important; }
+.markdown-preview[data-use-github-style] > :last-child { margin-bottom: 0px !important; }
+.markdown-preview[data-use-github-style] a:not([href]) { color: inherit; text-decoration: none; }
+.markdown-preview[data-use-github-style] .absent { color: rgb(204, 0, 0); }
+.markdown-preview[data-use-github-style] .anchor { position: absolute; top: 0px; left: 0px; display: block; padding-right: 6px; padding-left: 30px; margin-left: -30px; }
+.markdown-preview[data-use-github-style] .anchor:focus { outline: none; }
+.markdown-preview[data-use-github-style] h1, .markdown-preview[data-use-github-style] h2, .markdown-preview[data-use-github-style] h3, .markdown-preview[data-use-github-style] h4, .markdown-preview[data-use-github-style] h5, .markdown-preview[data-use-github-style] h6 { position: relative; margin-top: 1em; margin-bottom: 16px; font-weight: bold; line-height: 1.4; }
+.markdown-preview[data-use-github-style] h1 .octicon-link, .markdown-preview[data-use-github-style] h2 .octicon-link, .markdown-preview[data-use-github-style] h3 .octicon-link, .markdown-preview[data-use-github-style] h4 .octicon-link, .markdown-preview[data-use-github-style] h5 .octicon-link, .markdown-preview[data-use-github-style] h6 .octicon-link { display: none; color: rgb(0, 0, 0); vertical-align: middle; }
+.markdown-preview[data-use-github-style] h1:hover .anchor, .markdown-preview[data-use-github-style] h2:hover .anchor, .markdown-preview[data-use-github-style] h3:hover .anchor, .markdown-preview[data-use-github-style] h4:hover .anchor, .markdown-preview[data-use-github-style] h5:hover .anchor, .markdown-preview[data-use-github-style] h6:hover .anchor { padding-left: 8px; margin-left: -30px; text-decoration: none; }
+.markdown-preview[data-use-github-style] h1:hover .anchor .octicon-link, .markdown-preview[data-use-github-style] h2:hover .anchor .octicon-link, .markdown-preview[data-use-github-style] h3:hover .anchor .octicon-link, .markdown-preview[data-use-github-style] h4:hover .anchor .octicon-link, .markdown-preview[data-use-github-style] h5:hover .anchor .octicon-link, .markdown-preview[data-use-github-style] h6:hover .anchor .octicon-link { display: inline-block; }
+.markdown-preview[data-use-github-style] h1 tt, .markdown-preview[data-use-github-style] h2 tt, .markdown-preview[data-use-github-style] h3 tt, .markdown-preview[data-use-github-style] h4 tt, .markdown-preview[data-use-github-style] h5 tt, .markdown-preview[data-use-github-style] h6 tt, .markdown-preview[data-use-github-style] h1 code, .markdown-preview[data-use-github-style] h2 code, .markdown-preview[data-use-github-style] h3 code, .markdown-preview[data-use-github-style] h4 code, .markdown-preview[data-use-github-style] h5 code, .markdown-preview[data-use-github-style] h6 code { font-size: inherit; }
+.markdown-preview[data-use-github-style] h1 { padding-bottom: 0.3em; font-size: 2.25em; line-height: 1.2; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(238, 238, 238); }
+.markdown-preview[data-use-github-style] h1 .anchor { line-height: 1; }
+.markdown-preview[data-use-github-style] h2 { padding-bottom: 0.3em; font-size: 1.75em; line-height: 1.225; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(238, 238, 238); }
+.markdown-preview[data-use-github-style] h2 .anchor { line-height: 1; }
+.markdown-preview[data-use-github-style] h3 { font-size: 1.5em; line-height: 1.43; }
+.markdown-preview[data-use-github-style] h3 .anchor { line-height: 1.2; }
+.markdown-preview[data-use-github-style] h4 { font-size: 1.25em; }
+.markdown-preview[data-use-github-style] h4 .anchor { line-height: 1.2; }
+.markdown-preview[data-use-github-style] h5 { font-size: 1em; }
+.markdown-preview[data-use-github-style] h5 .anchor { line-height: 1.1; }
+.markdown-preview[data-use-github-style] h6 { font-size: 1em; color: rgb(119, 119, 119); }
+.markdown-preview[data-use-github-style] h6 .anchor { line-height: 1.1; }
+.markdown-preview[data-use-github-style] p, .markdown-preview[data-use-github-style] blockquote, .markdown-preview[data-use-github-style] ul, .markdown-preview[data-use-github-style] ol, .markdown-preview[data-use-github-style] dl, .markdown-preview[data-use-github-style] table, .markdown-preview[data-use-github-style] pre { margin-top: 0px; margin-bottom: 16px; }
+.markdown-preview[data-use-github-style] hr { height: 4px; padding: 0px; margin: 16px 0px; border: 0px none; background-color: rgb(231, 231, 231); }
+.markdown-preview[data-use-github-style] ul, .markdown-preview[data-use-github-style] ol { padding-left: 2em; }
+.markdown-preview[data-use-github-style] ul.no-list, .markdown-preview[data-use-github-style] ol.no-list { padding: 0px; list-style-type: none; }
+.markdown-preview[data-use-github-style] ul ul, .markdown-preview[data-use-github-style] ul ol, .markdown-preview[data-use-github-style] ol ol, .markdown-preview[data-use-github-style] ol ul { margin-top: 0px; margin-bottom: 0px; }
+.markdown-preview[data-use-github-style] li > p { margin-top: 16px; }
+.markdown-preview[data-use-github-style] dl { padding: 0px; }
+.markdown-preview[data-use-github-style] dl dt { padding: 0px; margin-top: 16px; font-size: 1em; font-style: italic; font-weight: bold; }
+.markdown-preview[data-use-github-style] dl dd { padding: 0px 16px; margin-bottom: 16px; }
+.markdown-preview[data-use-github-style] blockquote { padding: 0px 15px; color: rgb(119, 119, 119); border-left-width: 4px; border-left-style: solid; border-left-color: rgb(221, 221, 221); }
+.markdown-preview[data-use-github-style] blockquote > :first-child { margin-top: 0px; }
+.markdown-preview[data-use-github-style] blockquote > :last-child { margin-bottom: 0px; }
+.markdown-preview[data-use-github-style] table { display: block; width: 100%; overflow: auto; word-break: keep-all; }
+.markdown-preview[data-use-github-style] table th { font-weight: bold; }
+.markdown-preview[data-use-github-style] table th, .markdown-preview[data-use-github-style] table td { padding: 6px 13px; border: 1px solid rgb(221, 221, 221); }
+.markdown-preview[data-use-github-style] table tr { border-top-width: 1px; border-top-style: solid; border-top-color: rgb(204, 204, 204); background-color: rgb(255, 255, 255); }
+.markdown-preview[data-use-github-style] table tr:nth-child(2n) { background-color: rgb(248, 248, 248); }
+.markdown-preview[data-use-github-style] img { max-width: 100%; box-sizing: border-box; }
+.markdown-preview[data-use-github-style] .emoji { max-width: none; }
+.markdown-preview[data-use-github-style] span.frame { display: block; overflow: hidden; }
+.markdown-preview[data-use-github-style] span.frame > span { display: block; float: left; width: auto; padding: 7px; margin: 13px 0px 0px; overflow: hidden; border: 1px solid rgb(221, 221, 221); }
+.markdown-preview[data-use-github-style] span.frame span img { display: block; float: left; }
+.markdown-preview[data-use-github-style] span.frame span span { display: block; padding: 5px 0px 0px; clear: both; color: rgb(51, 51, 51); }
+.markdown-preview[data-use-github-style] span.align-center { display: block; overflow: hidden; clear: both; }
+.markdown-preview[data-use-github-style] span.align-center > span { display: block; margin: 13px auto 0px; overflow: hidden; text-align: center; }
+.markdown-preview[data-use-github-style] span.align-center span img { margin: 0px auto; text-align: center; }
+.markdown-preview[data-use-github-style] span.align-right { display: block; overflow: hidden; clear: both; }
+.markdown-preview[data-use-github-style] span.align-right > span { display: block; margin: 13px 0px 0px; overflow: hidden; text-align: right; }
+.markdown-preview[data-use-github-style] span.align-right span img { margin: 0px; text-align: right; }
+.markdown-preview[data-use-github-style] span.float-left { display: block; float: left; margin-right: 13px; overflow: hidden; }
+.markdown-preview[data-use-github-style] span.float-left span { margin: 13px 0px 0px; }
+.markdown-preview[data-use-github-style] span.float-right { display: block; float: right; margin-left: 13px; overflow: hidden; }
+.markdown-preview[data-use-github-style] span.float-right > span { display: block; margin: 13px auto 0px; overflow: hidden; text-align: right; }
+.markdown-preview[data-use-github-style] code, .markdown-preview[data-use-github-style] tt { padding: 0.2em 0px; margin: 0px; font-size: 85%; border-radius: 3px; background-color: rgba(0, 0, 0, 0.0392157); }
+.markdown-preview[data-use-github-style] code::before, .markdown-preview[data-use-github-style] tt::before, .markdown-preview[data-use-github-style] code::after, .markdown-preview[data-use-github-style] tt::after { letter-spacing: -0.2em; content: " "; }
+.markdown-preview[data-use-github-style] code br, .markdown-preview[data-use-github-style] tt br { display: none; }
+.markdown-preview[data-use-github-style] del code { text-decoration: inherit; }
+.markdown-preview[data-use-github-style] pre > code { padding: 0px; margin: 0px; font-size: 100%; word-break: normal; white-space: pre; border: 0px; background: transparent; }
+.markdown-preview[data-use-github-style] .highlight { margin-bottom: 16px; }
+.markdown-preview[data-use-github-style] .highlight pre, .markdown-preview[data-use-github-style] pre { padding: 16px; overflow: auto; font-size: 85%; line-height: 1.45; border-radius: 3px; background-color: rgb(247, 247, 247); }
+.markdown-preview[data-use-github-style] .highlight pre { margin-bottom: 0px; word-break: normal; }
+.markdown-preview[data-use-github-style] pre { word-wrap: normal; }
+.markdown-preview[data-use-github-style] pre code, .markdown-preview[data-use-github-style] pre tt { display: inline; max-width: initial; padding: 0px; margin: 0px; overflow: initial; line-height: inherit; word-wrap: normal; border: 0px; background-color: transparent; }
+.markdown-preview[data-use-github-style] pre code::before, .markdown-preview[data-use-github-style] pre tt::before, .markdown-preview[data-use-github-style] pre code::after, .markdown-preview[data-use-github-style] pre tt::after { content: normal; }
+.markdown-preview[data-use-github-style] kbd { display: inline-block; padding: 3px 5px; font-size: 11px; line-height: 10px; color: rgb(85, 85, 85); vertical-align: middle; border-style: solid; border-width: 1px; border-color: rgb(204, 204, 204) rgb(204, 204, 204) rgb(187, 187, 187); border-radius: 3px; box-shadow: rgb(187, 187, 187) 0px -1px 0px inset; background-color: rgb(252, 252, 252); }
+.markdown-preview[data-use-github-style] a { color: rgb(51, 122, 183); }
+.markdown-preview[data-use-github-style] pre, .markdown-preview[data-use-github-style] code { color: inherit; }
+.markdown-preview[data-use-github-style] pre, .markdown-preview[data-use-github-style] pre.editor-colors { padding: 0.8em 1em; margin-bottom: 1em; font-size: 0.85em; border-radius: 4px; overflow: auto; }
+.scrollbars-visible-always .markdown-preview pre.editor-colors::shadow .vertical-scrollbar, .scrollbars-visible-always .markdown-preview pre.editor-colors::shadow .horizontal-scrollbar { visibility: hidden; }
+.scrollbars-visible-always .markdown-preview pre.editor-colors:hover::shadow .vertical-scrollbar, .scrollbars-visible-always .markdown-preview pre.editor-colors:hover::shadow .horizontal-scrollbar { visibility: visible; }
+.markdown-preview del { text-decoration: none; position: relative; }
+.markdown-preview del::after { border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black; content: ""; left: 0px; position: absolute; right: 0px; top: 50%; }
+.markdown-preview .flash { animation: flash 1s ease-out 1; outline: rgba(255, 0, 0, 0) solid 1px; }
+.markdown-preview .flash:not(li) { display: block; }
+.markdown-preview:not([data-use-github-style]) { padding: 2em; font-size: 1.2em; color: rgb(171, 178, 191); overflow: auto; background-color: rgb(40, 44, 52); }
+.markdown-preview:not([data-use-github-style]) > :first-child { margin-top: 0px; }
+.markdown-preview:not([data-use-github-style]) h1, .markdown-preview:not([data-use-github-style]) h2, .markdown-preview:not([data-use-github-style]) h3, .markdown-preview:not([data-use-github-style]) h4, .markdown-preview:not([data-use-github-style]) h5, .markdown-preview:not([data-use-github-style]) h6 { line-height: 1.2; margin-top: 1.5em; margin-bottom: 0.5em; color: rgb(255, 255, 255); }
+.markdown-preview:not([data-use-github-style]) h1 { font-size: 2.4em; font-weight: 300; }
+.markdown-preview:not([data-use-github-style]) h2 { font-size: 1.8em; font-weight: 400; }
+.markdown-preview:not([data-use-github-style]) h3 { font-size: 1.5em; font-weight: 500; }
+.markdown-preview:not([data-use-github-style]) h4 { font-size: 1.2em; font-weight: 600; }
+.markdown-preview:not([data-use-github-style]) h5 { font-size: 1.1em; font-weight: 600; }
+.markdown-preview:not([data-use-github-style]) h6 { font-size: 1em; font-weight: 600; }
+.markdown-preview:not([data-use-github-style]) strong { color: rgb(255, 255, 255); }
+.markdown-preview:not([data-use-github-style]) del { color: rgb(124, 135, 156); }
+.markdown-preview:not([data-use-github-style]) a, .markdown-preview:not([data-use-github-style]) a code { color: rgb(82, 139, 255); }
+.markdown-preview:not([data-use-github-style]) img { max-width: 100%; }
+.markdown-preview:not([data-use-github-style]) > p { margin-top: 0px; margin-bottom: 1.5em; }
+.markdown-preview:not([data-use-github-style]) > ul, .markdown-preview:not([data-use-github-style]) > ol { margin-bottom: 1.5em; }
+.markdown-preview:not([data-use-github-style]) blockquote { margin: 1.5em 0px; font-size: inherit; color: rgb(124, 135, 156); border-color: rgb(75, 83, 98); border-width: 4px; }
+.markdown-preview:not([data-use-github-style]) hr { margin: 3em 0px; border-top-width: 2px; border-top-style: dashed; border-top-color: rgb(75, 83, 98); background: none; }
+.markdown-preview:not([data-use-github-style]) table { margin: 1.5em 0px; }
+.markdown-preview:not([data-use-github-style]) th { color: rgb(255, 255, 255); }
+.markdown-preview:not([data-use-github-style]) th, .markdown-preview:not([data-use-github-style]) td { padding: 0.66em 1em; border: 1px solid rgb(75, 83, 98); }
+.markdown-preview:not([data-use-github-style]) code { color: rgb(255, 255, 255); background-color: rgb(58, 63, 75); }
+.markdown-preview:not([data-use-github-style]) pre.editor-colors { margin: 1.5em 0px; padding: 1em; font-size: 0.92em; border-radius: 3px; background-color: rgb(49, 54, 63); }
+.markdown-preview:not([data-use-github-style]) kbd { color: rgb(255, 255, 255); border-width: 1px 1px 2px; border-style: solid; border-color: rgb(75, 83, 98) rgb(75, 83, 98) rgb(62, 68, 81); background-color: rgb(58, 63, 75); }
+.markdown-preview[data-use-github-style] { font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif; line-height: 1.6; word-wrap: break-word; padding: 30px; font-size: 16px; color: rgb(51, 51, 51); overflow: scroll; background-color: rgb(255, 255, 255); }
+.markdown-preview[data-use-github-style] > :first-child { margin-top: 0px !important; }
+.markdown-preview[data-use-github-style] > :last-child { margin-bottom: 0px !important; }
+.markdown-preview[data-use-github-style] a:not([href]) { color: inherit; text-decoration: none; }
+.markdown-preview[data-use-github-style] .absent { color: rgb(204, 0, 0); }
+.markdown-preview[data-use-github-style] .anchor { position: absolute; top: 0px; left: 0px; display: block; padding-right: 6px; padding-left: 30px; margin-left: -30px; }
+.markdown-preview[data-use-github-style] .anchor:focus { outline: none; }
+.markdown-preview[data-use-github-style] h1, .markdown-preview[data-use-github-style] h2, .markdown-preview[data-use-github-style] h3, .markdown-preview[data-use-github-style] h4, .markdown-preview[data-use-github-style] h5, .markdown-preview[data-use-github-style] h6 { position: relative; margin-top: 1em; margin-bottom: 16px; font-weight: bold; line-height: 1.4; }
+.markdown-preview[data-use-github-style] h1 .octicon-link, .markdown-preview[data-use-github-style] h2 .octicon-link, .markdown-preview[data-use-github-style] h3 .octicon-link, .markdown-preview[data-use-github-style] h4 .octicon-link, .markdown-preview[data-use-github-style] h5 .octicon-link, .markdown-preview[data-use-github-style] h6 .octicon-link { display: none; color: rgb(0, 0, 0); vertical-align: middle; }
+.markdown-preview[data-use-github-style] h1:hover .anchor, .markdown-preview[data-use-github-style] h2:hover .anchor, .markdown-preview[data-use-github-style] h3:hover .anchor, .markdown-preview[data-use-github-style] h4:hover .anchor, .markdown-preview[data-use-github-style] h5:hover .anchor, .markdown-preview[data-use-github-style] h6:hover .anchor { padding-left: 8px; margin-left: -30px; text-decoration: none; }
+.markdown-preview[data-use-github-style] h1:hover .anchor .octicon-link, .markdown-preview[data-use-github-style] h2:hover .anchor .octicon-link, .markdown-preview[data-use-github-style] h3:hover .anchor .octicon-link, .markdown-preview[data-use-github-style] h4:hover .anchor .octicon-link, .markdown-preview[data-use-github-style] h5:hover .anchor .octicon-link, .markdown-preview[data-use-github-style] h6:hover .anchor .octicon-link { display: inline-block; }
+.markdown-preview[data-use-github-style] h1 tt, .markdown-preview[data-use-github-style] h2 tt, .markdown-preview[data-use-github-style] h3 tt, .markdown-preview[data-use-github-style] h4 tt, .markdown-preview[data-use-github-style] h5 tt, .markdown-preview[data-use-github-style] h6 tt, .markdown-preview[data-use-github-style] h1 code, .markdown-preview[data-use-github-style] h2 code, .markdown-preview[data-use-github-style] h3 code, .markdown-preview[data-use-github-style] h4 code, .markdown-preview[data-use-github-style] h5 code, .markdown-preview[data-use-github-style] h6 code { font-size: inherit; }
+.markdown-preview[data-use-github-style] h1 { padding-bottom: 0.3em; font-size: 2.25em; line-height: 1.2; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(238, 238, 238); }
+.markdown-preview[data-use-github-style] h1 .anchor { line-height: 1; }
+.markdown-preview[data-use-github-style] h2 { padding-bottom: 0.3em; font-size: 1.75em; line-height: 1.225; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(238, 238, 238); }
+.markdown-preview[data-use-github-style] h2 .anchor { line-height: 1; }
+.markdown-preview[data-use-github-style] h3 { font-size: 1.5em; line-height: 1.43; }
+.markdown-preview[data-use-github-style] h3 .anchor { line-height: 1.2; }
+.markdown-preview[data-use-github-style] h4 { font-size: 1.25em; }
+.markdown-preview[data-use-github-style] h4 .anchor { line-height: 1.2; }
+.markdown-preview[data-use-github-style] h5 { font-size: 1em; }
+.markdown-preview[data-use-github-style] h5 .anchor { line-height: 1.1; }
+.markdown-preview[data-use-github-style] h6 { font-size: 1em; color: rgb(119, 119, 119); }
+.markdown-preview[data-use-github-style] h6 .anchor { line-height: 1.1; }
+.markdown-preview[data-use-github-style] p, .markdown-preview[data-use-github-style] blockquote, .markdown-preview[data-use-github-style] ul, .markdown-preview[data-use-github-style] ol, .markdown-preview[data-use-github-style] dl, .markdown-preview[data-use-github-style] table, .markdown-preview[data-use-github-style] pre { margin-top: 0px; margin-bottom: 16px; }
+.markdown-preview[data-use-github-style] hr { height: 4px; padding: 0px; margin: 16px 0px; border: 0px none; background-color: rgb(231, 231, 231); }
+.markdown-preview[data-use-github-style] ul, .markdown-preview[data-use-github-style] ol { padding-left: 2em; }
+.markdown-preview[data-use-github-style] ul.no-list, .markdown-preview[data-use-github-style] ol.no-list { padding: 0px; list-style-type: none; }
+.markdown-preview[data-use-github-style] ul ul, .markdown-preview[data-use-github-style] ul ol, .markdown-preview[data-use-github-style] ol ol, .markdown-preview[data-use-github-style] ol ul { margin-top: 0px; margin-bottom: 0px; }
+.markdown-preview[data-use-github-style] li > p { margin-top: 16px; }
+.markdown-preview[data-use-github-style] dl { padding: 0px; }
+.markdown-preview[data-use-github-style] dl dt { padding: 0px; margin-top: 16px; font-size: 1em; font-style: italic; font-weight: bold; }
+.markdown-preview[data-use-github-style] dl dd { padding: 0px 16px; margin-bottom: 16px; }
+.markdown-preview[data-use-github-style] blockquote { padding: 0px 15px; color: rgb(119, 119, 119); border-left-width: 4px; border-left-style: solid; border-left-color: rgb(221, 221, 221); }
+.markdown-preview[data-use-github-style] blockquote > :first-child { margin-top: 0px; }
+.markdown-preview[data-use-github-style] blockquote > :last-child { margin-bottom: 0px; }
+.markdown-preview[data-use-github-style] table { display: block; width: 100%; overflow: auto; word-break: keep-all; }
+.markdown-preview[data-use-github-style] table th { font-weight: bold; }
+.markdown-preview[data-use-github-style] table th, .markdown-preview[data-use-github-style] table td { padding: 6px 13px; border: 1px solid rgb(221, 221, 221); }
+.markdown-preview[data-use-github-style] table tr { border-top-width: 1px; border-top-style: solid; border-top-color: rgb(204, 204, 204); background-color: rgb(255, 255, 255); }
+.markdown-preview[data-use-github-style] table tr:nth-child(2n) { background-color: rgb(248, 248, 248); }
+.markdown-preview[data-use-github-style] img { max-width: 100%; box-sizing: border-box; }
+.markdown-preview[data-use-github-style] .emoji { max-width: none; }
+.markdown-preview[data-use-github-style] span.frame { display: block; overflow: hidden; }
+.markdown-preview[data-use-github-style] span.frame > span { display: block; float: left; width: auto; padding: 7px; margin: 13px 0px 0px; overflow: hidden; border: 1px solid rgb(221, 221, 221); }
+.markdown-preview[data-use-github-style] span.frame span img { display: block; float: left; }
+.markdown-preview[data-use-github-style] span.frame span span { display: block; padding: 5px 0px 0px; clear: both; color: rgb(51, 51, 51); }
+.markdown-preview[data-use-github-style] span.align-center { display: block; overflow: hidden; clear: both; }
+.markdown-preview[data-use-github-style] span.align-center > span { display: block; margin: 13px auto 0px; overflow: hidden; text-align: center; }
+.markdown-preview[data-use-github-style] span.align-center span img { margin: 0px auto; text-align: center; }
+.markdown-preview[data-use-github-style] span.align-right { display: block; overflow: hidden; clear: both; }
+.markdown-preview[data-use-github-style] span.align-right > span { display: block; margin: 13px 0px 0px; overflow: hidden; text-align: right; }
+.markdown-preview[data-use-github-style] span.align-right span img { margin: 0px; text-align: right; }
+.markdown-preview[data-use-github-style] span.float-left { display: block; float: left; margin-right: 13px; overflow: hidden; }
+.markdown-preview[data-use-github-style] span.float-left span { margin: 13px 0px 0px; }
+.markdown-preview[data-use-github-style] span.float-right { display: block; float: right; margin-left: 13px; overflow: hidden; }
+.markdown-preview[data-use-github-style] span.float-right > span { display: block; margin: 13px auto 0px; overflow: hidden; text-align: right; }
+.markdown-preview[data-use-github-style] code, .markdown-preview[data-use-github-style] tt { padding: 0.2em 0px; margin: 0px; font-size: 85%; border-radius: 3px; background-color: rgba(0, 0, 0, 0.0392157); }
+.markdown-preview[data-use-github-style] code::before, .markdown-preview[data-use-github-style] tt::before, .markdown-preview[data-use-github-style] code::after, .markdown-preview[data-use-github-style] tt::after { letter-spacing: -0.2em; content: " "; }
+.markdown-preview[data-use-github-style] code br, .markdown-preview[data-use-github-style] tt br { display: none; }
+.markdown-preview[data-use-github-style] del code { text-decoration: inherit; }
+.markdown-preview[data-use-github-style] pre > code { padding: 0px; margin: 0px; font-size: 100%; word-break: normal; white-space: pre; border: 0px; background: transparent; }
+.markdown-preview[data-use-github-style] .highlight { margin-bottom: 16px; }
+.markdown-preview[data-use-github-style] .highlight pre, .markdown-preview[data-use-github-style] pre { padding: 16px; overflow: auto; font-size: 85%; line-height: 1.45; border-radius: 3px; background-color: rgb(247, 247, 247); }
+.markdown-preview[data-use-github-style] .highlight pre { margin-bottom: 0px; word-break: normal; }
+.markdown-preview[data-use-github-style] pre { word-wrap: normal; }
+.markdown-preview[data-use-github-style] pre code, .markdown-preview[data-use-github-style] pre tt { display: inline; max-width: initial; padding: 0px; margin: 0px; overflow: initial; line-height: inherit; word-wrap: normal; border: 0px; background-color: transparent; }
+.markdown-preview[data-use-github-style] pre code::before, .markdown-preview[data-use-github-style] pre tt::before, .markdown-preview[data-use-github-style] pre code::after, .markdown-preview[data-use-github-style] pre tt::after { content: normal; }
+.markdown-preview[data-use-github-style] kbd { display: inline-block; padding: 3px 5px; font-size: 11px; line-height: 10px; color: rgb(85, 85, 85); vertical-align: middle; border-style: solid; border-width: 1px; border-color: rgb(204, 204, 204) rgb(204, 204, 204) rgb(187, 187, 187); border-radius: 3px; box-shadow: rgb(187, 187, 187) 0px -1px 0px inset; background-color: rgb(252, 252, 252); }
+.markdown-preview[data-use-github-style] a { color: rgb(51, 122, 183); }
+.markdown-preview[data-use-github-style] code { color: inherit; }
+.markdown-preview[data-use-github-style] pre.editor-colors { padding: 0.8em 1em; margin-bottom: 1em; font-size: 0.85em; border-radius: 4px; overflow: auto; }
+.scrollbars-visible-always .markdown-preview pre.editor-colors::shadow .vertical-scrollbar, .scrollbars-visible-always .markdown-preview pre.editor-colors::shadow .horizontal-scrollbar { visibility: hidden; }
+.scrollbars-visible-always .markdown-preview pre.editor-colors:hover::shadow .vertical-scrollbar, .scrollbars-visible-always .markdown-preview pre.editor-colors:hover::shadow .horizontal-scrollbar { visibility: visible; }
+.markdown-preview code { text-shadow: none; }
+.markdown-preview.markdown-preview { font-family: Alegreya, 'PT Serif', 'Helvetica Neue', Arial, 'Segoe UI', sans-serif; }
+.bracket-matcher .region {
+  border-bottom: 1px dotted lime;
+  position: absolute;
+}
+
+.spell-check-misspelling .region {
+  border-bottom: 2px dotted rgba(255, 51, 51, 0.75);
+}
+
+pre.editor-colors,
+.host {
+  background-color: #282c34;
+  color: #abb2bf;
+}
+pre.editor-colors .line.cursor-line,
+.host .line.cursor-line {
+  background-color: rgba(153, 187, 255, 0.04);
+}
+pre.editor-colors .invisible,
+.host .invisible {
+  color: #abb2bf;
+}
+pre.editor-colors .cursor,
+.host .cursor {
+  border-left: 2px solid #528bff;
+}
+pre.editor-colors .selection .region,
+.host .selection .region {
+  background-color: #3e4451;
+}
+pre.editor-colors .bracket-matcher .region,
+.host .bracket-matcher .region {
+  border-bottom: 1px solid #528bff;
+  box-sizing: border-box;
+}
+pre.editor-colors .invisible-character,
+.host .invisible-character {
+  color: rgba(171, 178, 191, 0.15);
+}
+pre.editor-colors .indent-guide,
+.host .indent-guide {
+  color: rgba(171, 178, 191, 0.15);
+}
+pre.editor-colors .wrap-guide,
+.host .wrap-guide {
+  background-color: rgba(171, 178, 191, 0.15);
+}
+pre.editor-colors .gutter .line-number,
+.host .gutter .line-number {
+  color: #636d83;
+  -webkit-font-smoothing: antialiased;
+}
+pre.editor-colors .gutter .line-number.cursor-line,
+.host .gutter .line-number.cursor-line {
+  color: #abb2bf;
+  background-color: #2c313a;
+}
+pre.editor-colors .gutter .line-number.cursor-line-no-selection,
+.host .gutter .line-number.cursor-line-no-selection {
+  background-color: transparent;
+}
+pre.editor-colors .gutter .line-number .icon-right,
+.host .gutter .line-number .icon-right {
+  color: #abb2bf;
+}
+pre.editor-colors .gutter:not(.git-diff-icon) .line-number.git-line-removed.git-line-removed::before,
+.host .gutter:not(.git-diff-icon) .line-number.git-line-removed.git-line-removed::before {
+  bottom: -3px;
+}
+pre.editor-colors .gutter:not(.git-diff-icon) .line-number.git-line-removed::after,
+.host .gutter:not(.git-diff-icon) .line-number.git-line-removed::after {
+  content: "";
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  width: 25px;
+  border-bottom: 1px dotted rgba(224, 82, 82, 0.5);
+  pointer-events: none;
+}
+pre.editor-colors .gutter .line-number.folded,
+.host .gutter .line-number.folded,
+pre.editor-colors .gutter .line-number:after,
+.host .gutter .line-number:after,
+pre.editor-colors .fold-marker:after,
+.host .fold-marker:after {
+  color: #abb2bf;
+}
+.comment {
+  color: #5c6370;
+  font-style: italic;
+}
+.comment .markup.link {
+  color: #5c6370;
+}
+.entity.name.type {
+  color: #e5c07b;
+}
+.entity.other.inherited-class {
+  color: #98c379;
+}
+.keyword {
+  color: #c678dd;
+}
+.keyword.control {
+  color: #c678dd;
+}
+.keyword.operator {
+  color: #abb2bf;
+}
+.keyword.other.special-method {
+  color: #61afef;
+}
+.keyword.other.unit {
+  color: #d19a66;
+}
+.storage {
+  color: #c678dd;
+}
+.storage.type.annotation,
+.storage.type.primitive {
+  color: #c678dd;
+}
+.storage.modifier.package,
+.storage.modifier.import {
+  color: #abb2bf;
+}
+.constant {
+  color: #d19a66;
+}
+.constant.variable {
+  color: #d19a66;
+}
+.constant.character.escape {
+  color: #56b6c2;
+}
+.constant.numeric {
+  color: #d19a66;
+}
+.constant.other.color {
+  color: #56b6c2;
+}
+.constant.other.symbol {
+  color: #56b6c2;
+}
+.variable {
+  color: #e06c75;
+}
+.variable.interpolation {
+  color: #be5046;
+}
+.variable.parameter {
+  color: #abb2bf;
+}
+.string {
+  color: #98c379;
+}
+.string.regexp {
+  color: #56b6c2;
+}
+.string.regexp .source.ruby.embedded {
+  color: #e5c07b;
+}
+.string.other.link {
+  color: #e06c75;
+}
+.punctuation.definition.comment {
+  color: #5c6370;
+}
+.punctuation.definition.method-parameters,
+.punctuation.definition.function-parameters,
+.punctuation.definition.parameters,
+.punctuation.definition.separator,
+.punctuation.definition.seperator,
+.punctuation.definition.array {
+  color: #abb2bf;
+}
+.punctuation.definition.heading,
+.punctuation.definition.identity {
+  color: #61afef;
+}
+.punctuation.definition.bold {
+  color: #e5c07b;
+  font-weight: bold;
+}
+.punctuation.definition.italic {
+  color: #c678dd;
+  font-style: italic;
+}
+.punctuation.section.embedded {
+  color: #be5046;
+}
+.punctuation.section.method,
+.punctuation.section.class,
+.punctuation.section.inner-class {
+  color: #abb2bf;
+}
+.support.class {
+  color: #e5c07b;
+}
+.support.type {
+  color: #56b6c2;
+}
+.support.function {
+  color: #56b6c2;
+}
+.support.function.any-method {
+  color: #61afef;
+}
+.entity.name.function {
+  color: #61afef;
+}
+.entity.name.class,
+.entity.name.type.class {
+  color: #e5c07b;
+}
+.entity.name.section {
+  color: #61afef;
+}
+.entity.name.tag {
+  color: #e06c75;
+}
+.entity.other.attribute-name {
+  color: #d19a66;
+}
+.entity.other.attribute-name.id {
+  color: #61afef;
+}
+.meta.class {
+  color: #e5c07b;
+}
+.meta.class.body {
+  color: #abb2bf;
+}
+.meta.method-call,
+.meta.method {
+  color: #abb2bf;
+}
+.meta.definition.variable {
+  color: #e06c75;
+}
+.meta.link {
+  color: #d19a66;
+}
+.meta.require {
+  color: #61afef;
+}
+.meta.selector {
+  color: #c678dd;
+}
+.meta.separator {
+  background-color: #373b41;
+  color: #abb2bf;
+}
+.meta.tag {
+  color: #abb2bf;
+}
+.underline {
+  text-decoration: underline;
+}
+.none {
+  color: #abb2bf;
+}
+.invalid.deprecated {
+  color: #523d14 !important;
+  background-color: #e0c285 !important;
+}
+.invalid.illegal {
+  color: #ffffff !important;
+  background-color: #e05252 !important;
+}
+.markup.bold {
+  color: #d19a66;
+  font-weight: bold;
+}
+.markup.changed {
+  color: #c678dd;
+}
+.markup.deleted {
+  color: #e06c75;
+}
+.markup.italic {
+  color: #c678dd;
+  font-style: italic;
+}
+.markup.heading {
+  color: #e06c75;
+}
+.markup.heading .punctuation.definition.heading {
+  color: #61afef;
+}
+.markup.link {
+  color: #c678dd;
+}
+.markup.inserted {
+  color: #98c379;
+}
+.markup.quote {
+  color: #d19a66;
+}
+.markup.raw {
+  color: #98c379;
+}
+.source.cs .keyword.operator {
+  color: #c678dd;
+}
+.source.css .property-name,
+.source.css .property-value {
+  color: #828997;
+}
+.source.css .property-name.support,
+.source.css .property-value.support {
+  color: #abb2bf;
+}
+.source.gfm .markup {
+  -webkit-font-smoothing: auto;
+}
+.source.gfm .link .entity {
+  color: #61afef;
+}
+.source.ini .keyword.other.definition.ini {
+  color: #e06c75;
+}
+.source.java .storage.modifier.import {
+  color: #e5c07b;
+}
+.source.java .storage.type {
+  color: #e5c07b;
+}
+.source.java-properties .meta.key-pair {
+  color: #e06c75;
+}
+.source.java-properties .meta.key-pair > .punctuation {
+  color: #abb2bf;
+}
+.source.js .keyword.operator {
+  color: #56b6c2;
+}
+.source.js .keyword.operator.delete,
+.source.js .keyword.operator.in,
+.source.js .keyword.operator.of,
+.source.js .keyword.operator.instanceof,
+.source.js .keyword.operator.new,
+.source.js .keyword.operator.typeof,
+.source.js .keyword.operator.void {
+  color: #c678dd;
+}
+.source.json .meta.structure.dictionary.json > .string.quoted.json {
+  color: #e06c75;
+}
+.source.json .meta.structure.dictionary.json > .string.quoted.json > .punctuation.string {
+  color: #e06c75;
+}
+.source.json .meta.structure.dictionary.json > .value.json > .string.quoted.json,
+.source.json .meta.structure.array.json > .value.json > .string.quoted.json,
+.source.json .meta.structure.dictionary.json > .value.json > .string.quoted.json > .punctuation,
+.source.json .meta.structure.array.json > .value.json > .string.quoted.json > .punctuation {
+  color: #98c379;
+}
+.source.json .meta.structure.dictionary.json > .constant.language.json,
+.source.json .meta.structure.array.json > .constant.language.json {
+  color: #56b6c2;
+}
+.source.ruby .constant.other.symbol > .punctuation {
+  color: inherit;
+}
+.source.python .keyword.operator.logical.python {
+  color: #c678dd;
+}
+.source.python .variable.parameter {
+  color: #d19a66;
+}
+</style>
+  </head>
+  <body class='markdown-preview'><h2>Lecture 14</h2>
+<h3>Hidden Variables and Missing Data</h3>
+<p>Missing Data</p>
+<ul>
+<li>Data entries are often missing, resulting in incomplete information to specify a likelihood</li>
+</ul>
+<p>Observational Variables</p>
+<ul>
+<li>Observational variables may be split into visible (known state) and missing (states would nominally be known but are missing for a particular datapoint)</li>
+</ul>
+<p>Latent Variables</p>
+<ul>
+<li>Not all variables in model are observed, so called hidden/latent variables. There are models that are essential for the model description but never observed. There may, for example, be latent processes essential to describe a model, but which cannot be directly measured.</li>
+</ul>
+<h3>Hiden/missing Variables can Complicate Things</h3>
+<p>In learning parameters of models, previously was assumed the complete information was known to define all variables of the joint model of the data <span class="math"><script type="math/tex">p(v|\theta)</script></span>.</p>
+<h3>Maximum Likelihood</h3>
+<ul>
+<li>For hidden variables <span class="math"><script type="math/tex">h</script></span> and visible variable <span class="math"><script type="math/tex">v</script></span>, there is a well defined likelihood:</li>
+</ul>
+<span class="math"><script type="math/tex; mode=display">p(v|\theta) = \sum_h p(v,h|\theta)
+</script></span>
+<ul>
+<li>Have to find parameter <span class="math"><script type="math/tex">\theta</script></span> that maximises <span class="math"><script type="math/tex">p(v|\theta</script></span>).</li>
+<li>More numerically complex than when all variables are visible</li>
+<li>Still possible to perform numerical optimisation using any routine to find <span class="math"><script type="math/tex">\theta</script></span></li>
+<li>EM algorithm is an alternative optimisation algorithm that can be very useful in producing simple &amp; elegant updates for <span class="math"><script type="math/tex">\theta</script></span> that converge to local optima.</li>
+</ul>
+<h3>Kullback-Leibler (KL) Divergence</h3>
+<p><span class="math"><script type="math/tex">\langle f \rangle_q</script></span> denotes the expected value of <span class="math"><script type="math/tex">f</script></span> with respect to distribution <span class="math"><script type="math/tex">q</script></span>. E.g., if <span class="math"><script type="math/tex">q</script></span> is discrete, defined over <span class="math"><script type="math/tex">1, \dots, n</script></span>:</p>
+<span class="math"><script type="math/tex; mode=display">\langle f \rangle_q = \sum_{i=1}^n f(i)q(i)
+</script></span>
+<p>KL divergence is the expected log odds between two distributions:</p>
+<span class="math"><script type="math/tex; mode=display">\begin{align}
+    \mathit{KL}(q(x)|p(x)) &= \left\langle
+        \log \frac{q(x)}{p(x)}
+    \right\rangle_{q(x)} \geq 0 \\
+    \mathit{KL}(q(x)|p(x)) &= 0 \text{ iff } p = q
+\end{align}
+</script></span>
+<p>KL divergence is roughly a measure of distance between distributions</p>
+<h3>Variational EM</h3>
+<!-- Key feature of EM algorithm is to form an alternative objective function for which parameter coupling effect is removed, meaning individual parameter updates can be achieved, akin to case of fully observed data. The marginal likelihood is replaced with a lower bound - this lower bound has the decoupled form.
+
+#### Single Observation
+
+The KL divergence between a 'variational' distribution $q(h|v)$ and the parametric model  -->
+<p>For i.i.d. data <span class="math"><script type="math/tex">\mathcal{V} = \{v^1, \dots, v^N\}</script></span>:</p>
+<span class="math"><script type="math/tex; mode=display">\log p(\mathcal{V}|\theta) \geq - \sum_{n=1}^N
+\left\langle
+    \log q(h^n|v^n)
+\right\rangle_{q(h^n|v^n)}
++
+\sum_{n=1}^N
+\left\langle
+     \log q(h^n,v^n | \theta)
+\right\rangle_{q(h^n|v^n)}
+</script></span>
+<p>This suggests an iterative process to optimise <span class="math"><script type="math/tex">\theta</script></span>:</p>
+<ul>
+<li><strong>E-step</strong> - for fixed <span class="math"><script type="math/tex">\theta</script></span>, find the distributions <span class="math"><script type="math/tex">q(h^n|v^n)</script></span> that maximise the bound.</li>
+<li><strong>M-step</strong> - for fixed <span class="math"><script type="math/tex">\{q(h^n|v^n),n=1, \dots, N \}</script></span>, find the parameters <span class="math"><script type="math/tex">\theta</script></span> that maximise the bound.</li>
+</ul>
+<h4>Classical EM</h4>
+<p>In the variational E-step above, the fully optimal setting is</p>
+<span class="math"><script type="math/tex; mode=display">q(h^n|v^n) = p(h^n|v^n, \theta)
+</script></span>
+<h2>Lecture 15 - Markov Chains</h2>
+<h3>Equilibrium Distribution</h3>
+<p>Interesting to know how marginal <span class="math"><script type="math/tex">p(x_t)</script></span> evolves through time:</p>
+<span class="math"><script type="math/tex; mode=display">p(x_t = i) = \sum_j \underbrace{p(x_t = i| x_{t-1} = j)}_{M_{ij}}p(x_{t-1} = j)
+</script></span>
+<p>The marginal <span class="math"><script type="math/tex">p(x_t = i)</script></span> has the interpretation of the frequency that state <span class="math"><script type="math/tex">i</script></span> is visited at time <span class="math"><script type="math/tex">t</script></span>, given a start of <span class="math"><script type="math/tex">p(x_1)</script></span> and random drawing of samples from the transition <span class="math"><script type="math/tex">p(x_T|x_{T-1})</script></span>. As repeated samples are taken of new states from the chain, the distribution at time <span class="math"><script type="math/tex">t</script></span>, for an initial distribution <span class="math"><script type="math/tex">\mathbf{p}_1(i)</script></span> is:</p>
+<span class="math"><script type="math/tex; mode=display">\mathbf{p}_t = \mathbf{M}^{t-1} \mathbf{p}_1
+</script></span>
+<p>If, for <span class="math"><script type="math/tex">t \to \infty, \; \mathbf{p}_\infty</script></span> is independent of the initial distribution <span class="math"><script type="math/tex">\mathbf{p}_1</script></span>, then <span class="math"><script type="math/tex">\mathbf{p}_\infty</script></span> is called the equilibrium distribution of the chain.</p>
+<span class="math"><script type="math/tex; mode=display">p_\infty (i) = \sum_j (x_t = i | x_{t-1} = j) p_\infty (j)
+</script></span>
+<p>In matrix notation, this can be written as the vector equation</p>
+<span class="math"><script type="math/tex; mode=display">\mathbf{p}_\infty = \mathbf{Mp}_\infty
+</script></span>
+<p>Hence the stationary distribution is proportional to the eigenvector with unit eigenvalue of the transition matrix.</p>
+<h2>Lecture 16 - Sampling and Markov Chain Monte Carlo</h2>
+<h3>Sampling</h3>
+<p>Sampling concerns drawing realisations <span class="math"><script type="math/tex">\mathcal{X} = \{x^1, \dots, x^L\}</script></span> from a distribution <span class="math"><script type="math/tex">p(x)</script></span>. For a discrete variable <span class="math"><script type="math/tex">x</script></span>, in the limit of a large number of samples, the fraction of samples in state <span class="math"><script type="math/tex">\mathsf{x}</script></span> tends to <span class="math"><script type="math/tex">p(x = \mathsf{x})</script></span>. I.e.,:</p>
+<span class="math"><script type="math/tex; mode=display">\lim_{L \to \infty} \frac{1}{L} \sum_{l=1}^L \left[ x^l = \mathsf{x} \right] = p(x = \mathsf{x})
+</script></span>
+<p>In the continuous case, can consider a small region <span class="math"><script type="math/tex">\Delta</script></span> such that the probability that the samples occupy <span class="math"><script type="math/tex">\Delta</script></span> tends to the integral of <span class="math"><script type="math/tex">p(x)</script></span> over <span class="math"><script type="math/tex">\Delta</script></span>.</p>
+<h4>Sampling to approximate averages</h4>
+<p>For a finite set of samples, expectations can be approximated via:</p>
+<span class="math"><script type="math/tex; mode=display">\left\langle f(X) \right\rangle_{p(x)} \approx \frac{1}{L} \sum_{l=1}^L f(x^l) \equiv \hat{f}_\mathcal{X}
+</script></span>
+<p>Subscript in <span class="math"><script type="math/tex">\hat{f}_\mathcal{X}</script></span> emphasizes that the approximation is dependent on the set of samples drawn.</p>
+<h3>Sampling as Approximation Techniques</h3>
+<ul>
+<li>A procedure that ‘faithfully’ samples from <span class="math"><script type="math/tex">p(x)</script></span> can be used to approximate averages.</li>
+<li>Suggests a general class of approximation methods for computing averages wrt. otherwise computationally intractable distributions</li>
+<li>Must find sampling procedures that can draw samples from distributions that are analytically &amp; computationally intractable</li>
+</ul>
+<h3>Drawing Independent Samples</h3>
+<ul>
+<li>Difficult is in generating independent samples</li>
+<li>Sampling high-dimensional distributions is difficult and few guarantees exist that ensure that in a practical timeframe, <em>independent</em> samples are produced.</li>
+<li>A dependent sampling scheme amy be unbiased, but the variance of the estimate may be so high that a large number of samples may be required for accurate approximation of expectations.</li>
+</ul>
+<h3>Continuous case</h3>
+<ul>
+<li>Calculate cumulant density function:</li>
+</ul>
+<span class="math"><script type="math/tex; mode=display">C(y) = \int^y_{-\infty} p(x) dx
+</script></span>
+<ul>
+<li>Then sample <span class="math"><script type="math/tex">u</script></span> uniformly from <span class="math"><script type="math/tex">[0,1]</script></span>, and obtain corresponding sample <span class="math"><script type="math/tex">x</script></span> by solving <span class="math"><script type="math/tex">C(x) = u \implies x = C^{-1}(u)</script></span></li>
+</ul>
+<blockquote>
+<p>For certain distributions (e.g., Gaussian), numerically efficient alternative procedures exist, usually based on co-ordinate transformations.</p>
+</blockquote>
+<h3>Multi-variate Sampling</h3>
+<ul>
+<li>Can generalise 1D discrete case to a higher-dimensional distribution <span class="math"><script type="math/tex">p(x_1, \dots, x_n)</script></span> by translating this into an equivalent 1D distribution.</li>
+<li>Enumerate all possible joint states <span class="math"><script type="math/tex">(x_1, \dots, x_n)</script></span>, giving each a unique integer <span class="math"><script type="math/tex">i</script></span> from <span class="math"><script type="math/tex">1</script></span> to total no. states (<span class="math"><script type="math/tex">n</script></span>), and construct a univariate distribution with probability <span class="math"><script type="math/tex">p(i) = p(\mathsf{x})</script></span> for <span class="math"><script type="math/tex">i</script></span> corresponding to the multi-variate state <span class="math"><script type="math/tex">\mathsf{x}</script></span>.</li>
+<li>Generally, this is impractical since number of states grows exponentially with no. variables.</li>
+</ul>
+<h3>Ancestral Sampling for Belief Networks</h3>
+<ul>
+<li>Rename variable indices so parent variables always precede children.</li>
+</ul>
+<span class="math"><script type="math/tex; mode=display">p(x_1, \dots, x_6) = p(x_1) p(x_2) p(x_3 | x_1, x_2) p(x_4 | x_3) p(x_5 | x_3) p(x_6 | x_4, x_5)
+</script></span>
+<ul>
+<li>Sample first from nodes without parents (<span class="math"><script type="math/tex">x_1</script></span> and <span class="math"><script type="math/tex">x_2</script></span>).
+<ul>
+<li>Given these values then sample from their immediate offspring (<span class="math"><script type="math/tex">x_4</script></span> and <span class="math"><script type="math/tex">x_5</script></span>).</li>
+<li>Finally sample the offspring’s offspring</li>
+</ul>
+</li>
+<li>Despite presence of loops in a graph, such a procedure is straightforward. Procedure holds for both discrete and conrinuous variables.</li>
+<li>Ancestral or ‘forward’ sampling is a case of perfect sampling since each sample is indeed independently drawn from required distribution.</li>
+</ul>
+<h3>Ancestral Sampling with Evidence</h3>
+<ul>
+<li>If sampling from <span class="math"><script type="math/tex">p(x_1,x_2,x_2,x_4,x_5 | x_6)</script></span>. Via Bayes’ rule:</li>
+</ul>
+<span class="math"><script type="math/tex; mode=display">\frac{p(x_1) p(x_2) p(x_3|x_1,x_2) p(x_4|x_3) p(x_5 | x_3) p(x_6|x_4,x_5)}
+    {\sum_{x_1,x_2,x_3,x_4,x_5} p(x_1) p(x_2) p(x_3|x_1,x_2) p(x_4|x_3) p(x_5|x_3) p(x_6|x_4,x_5)}
+</script></span>
+<blockquote>
+<p>Now <span class="math"><script type="math/tex">x_4</script></span> and <span class="math"><script type="math/tex">x_5</script></span> are coupled. Could attempt to find an equivalent new forward sampling structure, but v. complex.</p>
+</blockquote>
+<ul>
+<li>Alternative is to proceed with forward sampling from non-evidential distribution and discard any samples that don’t match evidential states. Generally not recommended as small probability that sample will be consistent with evidence.</li>
+</ul>
+<p>### Gibbs sampling</p>
+<ul>
+<li>Consider a particular variable <span class="math"><script type="math/tex">x_i</script></span>, to sample. Under Bayes’ rule:</li>
+</ul>
+<span class="math"><script type="math/tex; mode=display">p(x) = p(x_i|x_1, \dots, x_{i-1}, x_{i + 1}, \dots, x_n) p(x_1, \dots, x_{i-1}, x_{i + 1}, \dots, x_n)
+</script></span>
+<ul>
+<li>Given a join initial state <span class="math"><script type="math/tex">x^1</script></span>, from which the <em>parental</em> state <span class="math"><script type="math/tex">x^1_1, \dots, x^1_{i-1}, x^1_{i+1}, \dots, x^1_n</script></span> can be read, draw a sample <span class="math"><script type="math/tex">x^2_i</script></span> from:</li>
+</ul>
+<span class="math"><script type="math/tex; mode=display">p(x_i|x^1_1, \dots, x^1_{i-1}, x^1_{i+1}, \dots, x^1_n) \equiv p(x_i|x_{\backslash i})
+</script></span>
+<blockquote>
+<p>Assumed this distribution is easy to sample as it is univariate. This new joint sample (in which only <span class="math"><script type="math/tex">x_i</script></span> has updated) is:</p>
+</blockquote>
+<span class="math"><script type="math/tex; mode=display">x^2 = (x^1_1, \dots, x^1_{i-1}, x^2_i, x^1_{i+1}, \dots, x^1_n)
+</script></span>
+<ul>
+<li>Then another variable <span class="math"><script type="math/tex">x_j</script></span> is selected to sample, and by continuing this procedure, a set of samples <span class="math"><script type="math/tex">x^1, \dots, x^L</script></span> is generated in which each <span class="math"><script type="math/tex">x^{l+1}</script></span> differs from <span class="math"><script type="math/tex">x^l</script></span> in only a single component</li>
+</ul>
+<blockquote>
+<p>Omitted figure</p>
+</blockquote>
+<ul>
+<li><span class="math"><script type="math/tex">p(x_i|x_{\backslash i})</script></span> is defined by the Markov blanket of <span class="math"><script type="math/tex">x_i</script></span>:</li>
+</ul>
+<span class="math"><script type="math/tex; mode=display">p(x_i | x_{\backslash i}) \propto p(x_i|pa(x_i)) \prod_{j \in ch(i)} p(x_j|pa(x_j))
+</script></span>
+<ul>
+<li>For continuous variable <span class="math"><script type="math/tex">x_i</script></span>, the summation is replaced by integration</li>
+<li>Evidence is readily dealt with by clamping for all samples the evidential variables into their evidential states. No need to sample for these variables since their states are known</li>
+<li>Gibbs sampling is particularly straightforward to implement, but a drawback is that samples are strongly dependent</li>
+</ul>
+<h3>Gibbs Sampling as a Markov Chain</h3>
+<p>Can write Gibbs sampling as a procedure that draws from</p>
+<span class="math"><script type="math/tex; mode=display">x^{l+1} \sim q(x^{l+1}|x^l)
+</script></span>
+<p>for some distribution <span class="math"><script type="math/tex">q(x^{l+1}|x^l)</script></span>. Choosing the variable to update, <span class="math"><script type="math/tex">x_i</script></span>, at random from a distribution <span class="math"><script type="math/tex">q(i)</script></span>, Gibbs sampling corresponds to the Markov transition</p>
+<span class="math"><script type="math/tex; mode=display">q(x^{l+1}|x^l) = \sum_i q(x^{l+1}|x^l, i)q(i), \quad q(x^{l+1}|x^l, i) = p(x_i^{l+1}|x_{\backslash i}^l) \prod_{j \neq i} \delta (x_j^{l+1}, x_j^l)
+</script></span>
+<p>Then:</p>
+<span class="math"><script type="math/tex; mode=display">\begin{align}
+    \int_x q(x'|x)p(x) &= \sum_i q(i) \int_x q(x'|x_{\backslash i})p(x) \\
+    &= \sum_i q(i) \int_x \prod_{j \neq i} \delta (x_j', x_j) p(x_i' | x_{\backslash i}) p(x_i, x_{\backslash i}) \\
+    &= \sum_i q(i) \int_{x_i} p(x_i'| x_{\backslash i}') p(x_i, x_{\backslash i}') \\
+    &= \sum_i q(i) p(x_i'|x_{\backslash i}')p(x_{\backslash i}') = \sum_i q(i)p(x') = p(x')
+\end{align}
+</script></span>
+<p>Hence, drawing from <span class="math"><script type="math/tex">q(x'|x)</script></span> will, for <span class="math"><script type="math/tex">l \gg 1</script></span>, draw samples from <span class="math"><script type="math/tex">p(x)</script></span></p>
+<h3>Markov Chain Monte Carlo (MCMC)</h3>
+<ul>
+<li>Assume there exists a multi-variate distribution in the form</li>
+</ul>
+<span class="math"><script type="math/tex; mode=display">p(x) = \frac{1}{Z}p^* (x)
+</script></span>
+<blockquote>
+<p>Where <span class="math"><script type="math/tex">p^* (x)</script></span> is the unnormalised distribution and <span class="math"><script type="math/tex">Z = \int_x p^* (x)</script></span> is the normalization constant</p>
+</blockquote>
+<ul>
+<li>Assume ability to evaluate <span class="math"><script type="math/tex">p^* (x = \mathsf{x})</script></span>, for any state <span class="math"><script type="math/tex">\mathsf{x}</script></span>, but not <span class="math"><script type="math/tex">p(x = \mathsf{x})</script></span> since <span class="math"><script type="math/tex">Z</script></span> is intractable.</li>
+<li>MCMC sampling is to sample, not directly form <span class="math"><script type="math/tex">p(x)</script></span>, but from a distribution such that, in the limit of a large no. samples, effectively the samples will be from <span class="math"><script type="math/tex">p(x)</script></span></li>
+<li>Achieved by forward sampling from a Markov transition whose stationary distribution is equal to <span class="math"><script type="math/tex">p(x)</script></span></li>
+</ul>
+<h3>Markov Chains</h3>
+<ul>
+<li>Consider conditional distribution <span class="math"><script type="math/tex">q(x^{l+1}|x^l)</script></span>. After long time <span class="math"><script type="math/tex">L \gg 1</script></span>, the samples are from <span class="math"><script type="math/tex">q_\infty (x)</script></span>, which is defined as:</li>
+</ul>
+<span class="math"><script type="math/tex; mode=display">q_\infty (x') = \int_x q(x'|x) q_\infty (x)
+</script></span>
+<ul>
+<li>Find for a given distribution <span class="math"><script type="math/tex">p(x)</script></span> a transition <span class="math"><script type="math/tex">q(x'|x)</script></span> that has <span class="math"><script type="math/tex">p(x)</script></span> as its stationary distribution. If possible, then can draw samples from the Markov chain by forward sampling and take these as samples from <span class="math"><script type="math/tex">p(x)</script></span> as the chain converges towards its stationary distribution.</li>
+<li>Note that for every distribution <span class="math"><script type="math/tex">p(x)</script></span>, there will be more than one transition <span class="math"><script type="math/tex">q(x'|x)</script></span> with <span class="math"><script type="math/tex">p(x)</script></span> as its stationary distribution. (Many different MCMC techniques)</li>
+</ul></body>
+</html>
