@@ -450,7 +450,7 @@ $$
 
 ##  Lecture 10 - Evaluation and Cross validation
 
-### Mean error
+### Mean error
 
 $$
 \frac{1}{N} \sum_i \mathbf{error}(y_i, f(x_i))
@@ -462,6 +462,43 @@ $$
 \frac{1}{N} \sum_{\langle X,y \rangle \in \text{TestData}} \mathbf{error}(y - f(X))^2
 $$
 
-Square root of MSE, Root Mean Squared Error (RMSE) is common.
+### Hard Classification Accuracy
 
-### Hard Classificaton Accuracy
+
+**Average** hard classification accuracy in test set:
+
+$$
+\frac{1}{N} \sum_{\langle y,X \rangle \in \text{TestData}} I(c^{\mathbf{hard}}(X,\theta) = y)
+$$
+
+### Soft Classification Accuracy
+
+Average soft classification accuracy in Test Set:
+
+$$
+\frac{1}{N} \sum_{\langle X,c \rangle \in \text{TestData}} p(y=c|X,\theta)
+$$
+
+### Classification Error
+
+Average __soft__ classification error in test set:
+
+$$
+\frac{1}{N} \sum_{\langle X,c \rangle \in \text{TestData}} ( 1- p(y=c|X,\theta))
+$$
+
+Average __hard__ classification error in test set:
+
+$$
+\frac{1}{N} \sum_{\langle y,X \rangle \in \text{TestData}} (1 - I(c^{\mathbf{hard}}(X,\theta) = y))
+$$
+
+#### k-fold cross validation error
+
+$$
+\mathbf{errorCV}(f = \langle f^{-1}, \dots, f^{-k} \rangle, \lambda) = \frac{1}{N} \sum_i \mathbf{error}\left(y_i, f^{-f\,\mathbf{old}(i)}(X_i, \lambda)\right)
+$$
+
+$$
+\lambda^* = \mathbf{errorCV}(f = \langle f^{-1}, \dots, f^{-k} \rangle, \lambda)
+$$

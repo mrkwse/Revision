@@ -733,5 +733,78 @@ pre.editor-colors .fold-marker:after,
     &\propto \underset{\theta}{\arg\min} \sum_i \lambda(y_i - X_i\theta)^2 + (1 - \lambda)\sum_i |\theta_i|^P
 \end{align}
 </script></span>
-<h2>Lecture 10 - Evaluation and Cross Validation</h2></body>
+<h2>Lecture 10 - Evaluation and Cross Validation</h2>
+<h3>Mean error</h3>
+<span class="math"><script type="math/tex; mode=display">\frac{1}{N} \sum_i \mathbf{error}(y_i, f(x_i))
+</script></span>
+<h3>Mean Squared Error (MSE)</h3>
+<span class="math"><script type="math/tex; mode=display">\frac{1}{N} \sum_{\langle X,y \rangle \in \text{TestData}} \mathbf{error}(y - f(X))^2
+</script></span>
+<p>Square root of MSE, Root Mean Squared Error (RMSE) is common.</p>
+<h3>Hard Classification Accuracy</h3>
+<p>Hard classifier formulates error measure for a given test instance <span class="math"><script type="math/tex">\langle X,y \rangle</script></span> as:</p>
+<span class="math"><script type="math/tex; mode=display">I(c^{\mathbf{hard}}(X,\theta) = y)
+</script></span>
+<p>Average hard classification accuracy in test set:</p>
+<span class="math"><script type="math/tex; mode=display">\frac{1}{N} \sum_{\langle y,X \rangle \in \text{TestData}} I(c^{\mathbf{hard}}(X,\theta) = y)
+</script></span>
+<h3>Soft Classification Accuracy</h3>
+<p>Average soft classification accuracy in Test Set:</p>
+<span class="math"><script type="math/tex; mode=display">\frac{1}{N} \sum_{\langle X,c \rangle \in \text{TestData}} p(y=c|X,\theta)
+</script></span>
+<h3>Classification Error</h3>
+<p>Average <strong>soft</strong> classification error in test set:</p>
+<span class="math"><script type="math/tex; mode=display">\frac{1}{N} \sum_{\langle X,c \rangle \in \text{TestData}} ( 1- p(y=c|X,\theta))
+</script></span>
+<p>Average <strong>hard</strong> classification error in test set:</p>
+<span class="math"><script type="math/tex; mode=display">\frac{1}{N} \sum_{\langle y,X \rangle \in \text{TestData}} (1 - I(c^{\mathbf{hard}}(X,\theta) = y))
+</script></span>
+<blockquote>
+<ul>
+<li>Accuracy prefers high values</li>
+<li>Error prefers low values</li>
+</ul>
+</blockquote>
+<h3>Fitting Regularization Parameter <span class="math"><script type="math/tex">\lambda</script></span></h3>
+<ul>
+<li>Divide training data into actual training data, cross validation data, and test data.</li>
+<li>Error on cross validation data used to find best <span class="math"><script type="math/tex">\lambda</script></span></li>
+<li>With training and cros validation data:
+<ul>
+<li>Train linear regression function or logistic regression classifier on training data for different values of <span class="math"><script type="math/tex">\lambda</script></span></li>
+<li>Calculate error (MSE, hard/soft classification error)</li>
+<li>Choose <span class="math"><script type="math/tex">\lambda</script></span> with minimum error on cross validation data</li>
+</ul>
+</li>
+</ul>
+<h4>k-fold cross validation error</h4>
+<span class="math"><script type="math/tex; mode=display">\mathbf{errorCV}(f = \langle f^{-1}, \dots, f^{-k} \rangle, \lambda) = \frac{1}{N} \sum_i \mathbf{error}\left(y_i, f^{-f\,\mathbf{old}(i)}(X_i, \lambda)\right)
+</script></span>
+<p>Optimal <span class="math"><script type="math/tex">\lambda</script></span> given by:</p>
+<span class="math"><script type="math/tex; mode=display">\lambda^* = \mathbf{errorCV}(f = \langle f^{-1}, \dots, f^{-k} \rangle, \lambda)
+</script></span>
+<h3>CV to tune <span class="math"><script type="math/tex">\lambda</script></span></h3>
+<ol>
+<li>Divide training data in <span class="math"><script type="math/tex">K</script></span> folds</li>
+<li>For each fold as CV data, and other folds as <em>training data</em>:
+<ol>
+<li>Learn classifier/regression function on training data</li>
+<li>Predict output/class labels on CV folds</li>
+</ol>
+</li>
+<li>Use k-fold CV equation to predict averaged CV error. Use this to tune <span class="math"><script type="math/tex">\lambda</script></span>.</li>
+</ol>
+<h3>Full CV/Test Setup</h3>
+<ul>
+<li>K usually 5 or 10</li>
+<li>Test data unseen during CV</li>
+<li>Test data needs to be <em>representative</em> and should not include data from training set</li>
+<li>Test data can be sampled from training data</li>
+<li>Test data can be used to estimate expected error on unseen data (i.e., generalisation error)</li>
+</ul>
+<h2>Lecture 11 - Bayesian Networks</h2>
+<ul>
+<li>Represent probability distributions.</li>
+<li>Parameters and/or structure of these p.d.s can be learnt from data using either Bayesian or non-Bayesian methods.</li>
+</ul></body>
 </html>

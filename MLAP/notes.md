@@ -182,3 +182,97 @@ $$
 $$
 
 ## Lecture 10 - Evaluation and Cross Validation
+
+### Mean error
+
+$$
+\frac{1}{N} \sum_i \mathbf{error}(y_i, f(x_i))
+$$
+
+### Mean Squared Error (MSE)
+
+$$
+\frac{1}{N} \sum_{\langle X,y \rangle \in \text{TestData}} \mathbf{error}(y - f(X))^2
+$$
+
+Square root of MSE, Root Mean Squared Error (RMSE) is common.
+
+### Hard Classification Accuracy
+
+Hard classifier formulates error measure for a given test instance $\langle X,y \rangle$ as:
+
+$$
+I(c^{\mathbf{hard}}(X,\theta) = y)
+$$
+
+Average hard classification accuracy in test set:
+
+$$
+\frac{1}{N} \sum_{\langle y,X \rangle \in \text{TestData}} I(c^{\mathbf{hard}}(X,\theta) = y)
+$$
+
+### Soft Classification Accuracy
+
+Average soft classification accuracy in Test Set:
+
+$$
+\frac{1}{N} \sum_{\langle X,c \rangle \in \text{TestData}} p(y=c|X,\theta)
+$$
+
+### Classification Error
+
+Average __soft__ classification error in test set:
+
+$$
+\frac{1}{N} \sum_{\langle X,c \rangle \in \text{TestData}} ( 1- p(y=c|X,\theta))
+$$
+
+Average __hard__ classification error in test set:
+
+$$
+\frac{1}{N} \sum_{\langle y,X \rangle \in \text{TestData}} (1 - I(c^{\mathbf{hard}}(X,\theta) = y))
+$$
+
+> * Accuracy prefers high values
+> * Error prefers low values
+
+### Fitting Regularization Parameter $\lambda$
+
+* Divide training data into actual training data, cross validation data, and test data.
+* Error on cross validation data used to find best $\lambda$
+* With training and cros validation data:
+    * Train linear regression function or logistic regression classifier on training data for different values of $\lambda$
+    * Calculate error (MSE, hard/soft classification error)
+    * Choose $\lambda$ with minimum error on cross validation data
+
+#### k-fold cross validation error
+
+$$
+\mathbf{errorCV}(f = \langle f^{-1}, \dots, f^{-k} \rangle, \lambda) = \frac{1}{N} \sum_i \mathbf{error}\left(y_i, f^{-f\,\mathbf{old}(i)}(X_i, \lambda)\right)
+$$
+
+Optimal $\lambda$ given by:
+$$
+\lambda^* = \mathbf{errorCV}(f = \langle f^{-1}, \dots, f^{-k} \rangle, \lambda)
+$$
+
+### CV to tune $\lambda$
+
+1. Divide training data in $K$ folds
+2. For each fold as CV data, and other folds as _training data_:
+    1. Learn classifier/regression function on training data
+    2. Predict output/class labels on CV folds
+3. Use k-fold CV equation to predict averaged CV error. Use this to tune $\lambda$.
+
+### Full CV/Test Setup
+
+* K usually 5 or 10
+* Test data unseen during CV
+* Test data needs to be _representative_ and should not include data from training set
+* Test data can be sampled from training data
+* Test data can be used to estimate expected error on unseen data (i.e., generalisation error)
+
+## Lecture 11 - Bayesian Networks
+
+* Represent probability distributions.
+* Parameters and/or structure of these p.d.s can be learnt from data using either Bayesian or non-Bayesian methods.

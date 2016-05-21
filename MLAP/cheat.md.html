@@ -862,12 +862,30 @@ $$ -->
 \end{align}
 </script></span>
 <h2>Lecture 10 - Evaluation and Cross validation</h2>
-<p>### Mean error</p>
+<h3>Mean error</h3>
 <span class="math"><script type="math/tex; mode=display">\frac{1}{N} \sum_i \mathbf{error}(y_i, f(x_i))
 </script></span>
 <h3>Mean Squared Error (MSE)</h3>
 <span class="math"><script type="math/tex; mode=display">\frac{1}{N} \sum_{\langle X,y \rangle \in \text{TestData}} \mathbf{error}(y - f(X))^2
 </script></span>
-<p>Square root of MSE, Root Mean Squared Error (RMSE) is common.</p>
-<p>### Hard Classificaton Accuracy</p></body>
+<h3>Hard Classification Accuracy</h3>
+<p><strong>Average</strong> hard classification accuracy in test set:</p>
+<span class="math"><script type="math/tex; mode=display">\frac{1}{N} \sum_{\langle y,X \rangle \in \text{TestData}} I(c^{\mathbf{hard}}(X,\theta) = y)
+</script></span>
+<h3>Soft Classification Accuracy</h3>
+<p>Average soft classification accuracy in Test Set:</p>
+<span class="math"><script type="math/tex; mode=display">\frac{1}{N} \sum_{\langle X,c \rangle \in \text{TestData}} p(y=c|X,\theta)
+</script></span>
+<h3>Classification Error</h3>
+<p>Average <strong>soft</strong> classification error in test set:</p>
+<span class="math"><script type="math/tex; mode=display">\frac{1}{N} \sum_{\langle X,c \rangle \in \text{TestData}} ( 1- p(y=c|X,\theta))
+</script></span>
+<p>Average <strong>hard</strong> classification error in test set:</p>
+<span class="math"><script type="math/tex; mode=display">\frac{1}{N} \sum_{\langle y,X \rangle \in \text{TestData}} (1 - I(c^{\mathbf{hard}}(X,\theta) = y))
+</script></span>
+<h4>k-fold cross validation error</h4>
+<span class="math"><script type="math/tex; mode=display">\mathbf{errorCV}(f = \langle f^{-1}, \dots, f^{-k} \rangle, \lambda) = \frac{1}{N} \sum_i \mathbf{error}\left(y_i, f^{-f\,\mathbf{old}(i)}(X_i, \lambda)\right)
+</script></span>
+<span class="math"><script type="math/tex; mode=display">\lambda^* = \mathbf{errorCV}(f = \langle f^{-1}, \dots, f^{-k} \rangle, \lambda)
+</script></span></body>
 </html>
